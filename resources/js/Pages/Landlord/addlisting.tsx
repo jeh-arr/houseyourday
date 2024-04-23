@@ -44,11 +44,13 @@ export default function addlisting({ auth }: PageProps){
     const [cities, setCities] = useState<string[]>([]);
     
 
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, post, processing, errors, reset ,progress} = useForm({
         
-      
+        user_id: auth.user.id,
         property_name: '',
         property_address: '',
+        city:'',
+        postal:'',
         price: '',
         availability: '',
         bathroom: '',
@@ -56,48 +58,60 @@ export default function addlisting({ auth }: PageProps){
         other: '',
         rules: '',
         curfew: '',
-        image: '',
+        image: null,
     });
 
-    
+    const handleFileChange = (files : any) => {
+      if (files.length > 3) {
+          alert('Please select up to 3 images.');
+          return;
+      }
+  
+      for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          setData('image', file);
+          // Handle each file (e.g., upload, store, etc.)
+          console.log(`Uploaded image ${i + 1}:`, file);
+      }
+  }
 
-    // useEffect(() => {
+    useEffect(() => {
         
-    //     const region1 = getProvincesByRegion("09");
-    //     const region2 = getProvincesByRegion("10");
-    //     const region3 = getProvincesByRegion("11");
-    //     const region4 = getProvincesByRegion("12");
-    //     const region5 = getProvincesByRegion("15");
-    //     const region6 = getProvincesByRegion("16");
+        const region1 = getProvincesByRegion("09");
+        const region2 = getProvincesByRegion("10");
+        const region3 = getProvincesByRegion("11");
+        const region4 = getProvincesByRegion("12");
+        const region5 = getProvincesByRegion("15");
+        const region6 = getProvincesByRegion("16");
 
-    //     const mindanao = region1.concat(region2, region3, region4, region5, region6);
+        const mindanao = region1.concat(region2, region3, region4, region5, region6);
         
-    //     const cityPromises = region3.map((province : any)  => getCityMunByProvince(province.prov_code));
+        const cityPromises = region3.map((province : any)  => getCityMunByProvince(province.prov_code));
 
-    // // Execute all promises and get the results
-    //     Promise.all(cityPromises).then(cities => {
-    //         // 'cities' is an array of arrays, flatten it
-    //         const flattenedCities = cities.flat();
+    // Execute all promises and get the results
+        Promise.all(cityPromises).then(cities => {
+            // 'cities' is an array of arrays, flatten it
+            const flattenedCities = cities.flat();
 
-    //         // Do something with 'flattenedCities'
-    //         console.log(flattenedCities);
-    //         setCities(flattenedCities);
-    //     }).catch(error => {
-    //         console.error("Error fetching cities:", error);
-    //     });
+            // Do something with 'flattenedCities'
+            console.log(flattenedCities);
+            setCities(flattenedCities);
+        }).catch(error => {
+            console.error("Error fetching cities:", error);
+        });
         
-    // }, []); 
+    }, []); 
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
 
-        //post(route('register'));
+        post(route('landlord.store'));
     };
 
     return (
         <AuthenticatedLayout 
             user={auth.user}
-            header={<h2 className="text-xl font-semibold leading-tight text-gray-800">Add Listing</h2>}
+
         >
             <Head title="AddListing"  />
             <div className="py-12 ">
@@ -109,8 +123,8 @@ export default function addlisting({ auth }: PageProps){
                     {/* <AddressForm/> */}
                     
                     <form onSubmit={submit} >   
-                        <CardContent className=' text-gray-900 grid  gap-4'>
-                            <div className='flex flex-col pt-4 px-3 gap-4'>
+                        <CardContent className=' text-gray-900 grid  gap-1'>
+                            <div className='flex flex-col pt-2 px-3 gap-2'>
                                 <InputLabel htmlFor="property_name" value="Property Name" />
                                 <TextInput
                                 id="property_name"
@@ -119,44 +133,144 @@ export default function addlisting({ auth }: PageProps){
                                 onChange={(e) => setData('property_name', e.target.value)}
                                 />
                               </div>
-                            
-                            <div className='grid sm:grid-cols-3'>
-                              
-                              <div className='flex flex-col pt-4 px-3 gap-4'>
-                                <InputLabel htmlFor="MiddleName" value="Middle Name" />
+                            <div className='flex flex-col pt-2 px-3 gap-2'>
+                                <InputLabel htmlFor="property_address" value="Property Address" />
                                 <TextInput
-                                id="MiddleName"
-                                name="MiddleName"
+                                id="property_address"
+                                name="property_address"
                                 type='text'
-                                onChange={(e) => setData('price', e.target.value)}
+                                onChange={(e) => setData('property_address', e.target.value)}
                                 />
+                            </div>
+                            <div className='grid sm:grid-cols-2'>
+                              
+                              
+                              <div className='flex flex-col pt-2 px-3 gap-2'>
+                                <InputLabel htmlFor="city" value="City" />
+                                <Select  onValueChange={(value:string) => setData('city', value)}  >
+                                <SelectTrigger className="w-full">
+                                    <SelectValue placeholder="Select City" />
+                                </SelectTrigger>
+                                <SelectContent className='w-full'>
+                                    <SelectGroup>
+                                        <SelectLabel>City</SelectLabel>
+                                        {cities.map((city:any) => (
+                                            <SelectItem key={city.reg_code} value={city.name}>
+                                                {city.name}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectGroup>
+                                </SelectContent>
+                                </Select>
                               </div>
-                              <div className='flex flex-col pt-4 px-3 gap-4'>
-                                <InputLabel htmlFor="LastName" value="Last Name" />
+                              <div className='flex flex-col pt-2 px-3 gap-2'>
+                                <InputLabel htmlFor="postal" value="Postal Code" />
                                 <TextInput
-                                id="LastName"
-                                name="LastName"
+                                id="postal"
+                                name="postal"
                                 type='text'
-                                onChange={(e) => setData('price', e.target.value)}
+                                onChange={(e) => setData('postal', e.target.value)}
                                 />
                               </div>
                             </div>
                             
                         
-                            <div className='grid sm:grid-cols-2'>
-                              
-                              
-                            </div>
-                            <div className='flex flex-col pt-4 px-3 gap-4'>
+                            
+                          <div className='grid sm:grid-cols-2'>
+                            <div className='flex flex-col pt-2 px-3 gap-2'>
                           
-                            <InputLabel htmlFor="ContactNumber" value="Contact No." />
+                            <InputLabel htmlFor="bathroom" value="Bathroom" />
                             <TextInput
-                                id="ContactNumber"
-                                name="ContactNumber"
+                                id="bathroom"
+                                name="bathroom"
+                                type='text'
+                                onChange={(e) => setData('bathroom', e.target.value)}
+                                />
+                            </div>  
+                            <div className='flex flex-col pt-2 px-3 gap-2'>
+                          
+                            <InputLabel htmlFor="kitchen" value="Kitchen" />
+                            <TextInput
+                                id="kitchen"
+                                name="kitchen"
+                                type='text'
+                                onChange={(e) => setData('kitchen', e.target.value)}
+                                />
+                            </div>  
+                            <div className='flex flex-col pt-2 px-3 gap-2'>
+                          
+                            <InputLabel htmlFor="rules" value="Rules" />
+                            <TextInput
+                                id="rules"
+                                name="rules"
+                                type='text'
+                                onChange={(e) => setData('rules', e.target.value)}
+                                />
+                            </div>
+                            <div className='flex flex-col pt-2 px-3 gap-2'>
+                          
+                            <InputLabel htmlFor="curfew" value="Curfew" />
+                            <TextInput
+                                id="curfew"
+                                name="curfew"
+                                type='text'
+                                onChange={(e) => setData('curfew', e.target.value)}
+                                />
+                            </div>
+                            <div className='flex flex-col pt-2 px-3 gap-2'>
+                          
+                            <InputLabel htmlFor="availability" value="Availability" />
+                            <Select onValueChange={(value:string) => setData('availability', value)}  >
+                                <SelectTrigger className="w-full">
+                                    <SelectValue placeholder="Select Availability" />
+                                </SelectTrigger >
+                                <SelectContent className="w-full">
+                                    <SelectGroup>
+                                        <SelectLabel>Availability</SelectLabel>
+                                        <SelectItem value="Available">Available</SelectItem>
+                                        <SelectItem value="Not Available">Not Available</SelectItem>
+                                        <SelectItem value="Soon">Soon</SelectItem>
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+                            </div>
+                            <div className='flex flex-col pt-2 px-3 gap-2'>
+                          
+                            <InputLabel htmlFor="price" value="Price Per Month" />
+                            <TextInput
+                                id="price"
+                                name="price"
                                 type='text'
                                 onChange={(e) => setData('price', e.target.value)}
                                 />
+                            </div>
+                            </div>
+                            
+                            <div className='flex flex-col pt-2 px-3 gap-2'>
+                          
+                            <InputLabel htmlFor="other" value="Other Amenities" />
+                            <TextInput
+                                id="other"
+                                name="other"
+                                type='text'
+                                onChange={(e) => setData('other', e.target.value)}
+                                />
                             </div>  
+                            <div className='flex flex-col pt-2 px-3 gap-2'>
+                                <InputLabel htmlFor="image" value="Upload Image" />
+                                  
+
+                            <input 
+                                    type="file" 
+                                    className='border-2 border-gray-200 bg-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500'
+                                    
+                                    id="images" 
+                                    name="images" 
+                                    accept="image/*" 
+                                    multiple
+                                    onChange={(e) => handleFileChange(e.target.files)}
+                                />
+                            </div>
                         </CardContent>
                         <CardFooter className='font-sans text-white flex-1 justify-center' >
                             <Button variant="default" disabled={processing } className='hover:bg-gray-400 ' size="sm"

@@ -62,7 +62,14 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
+        
+        if ($user->usertype == 'Landlord') {
+            return redirect(route('landlord.index', absolute: false));
+        }
+        if ($user->usertype =='Renter') {
+            return redirect(route('renter.index', absolute: false));
+        }
 
-        return redirect(route('landlord.index', absolute: false));
+        
     }
 }

@@ -19,15 +19,17 @@ return new class extends Migration
             $table->foreignIdFor(User::class);
             $table->string('property_name');
             $table->string('property_address');
+            $table->string('city');
+            $table->string('postal');
             
             $table->string('price');
             $table->string('availability');
-            $table->string('bathroom');
-            $table->string('kitchen');
-            $table->string('other');
-            $table->string('rules');
-            $table->string('curfew');
-            $table->string('image');
+            $table->string('bathroom')->nullable();
+            $table->string('kitchen')->nullable();
+            $table->string('other')->nullable();
+            $table->string('rules')->nullable();
+            $table->string('curfew')->nullable();
+            $table->string('image')->nullable();
 
         });
     }
