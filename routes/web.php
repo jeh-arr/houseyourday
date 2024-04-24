@@ -27,6 +27,8 @@ Route::middleware('auth')->group(function () {
     
     Route::post('/landlord', [ListingController::class,'store'])->name('landlord.store');
 
+    Route::get('/landlord/{id}', [LandlordController::class,'show'])->name('landlord.show');
+    
     Route::get('/renter', [RenterController::class, 'index'])->name('renter.index');
 
 

@@ -41,7 +41,7 @@ export default function Register() {
         password: '',
         password_confirmation: '',
         phone: '',
-        birthdate: '',
+        
         usertype: '',
         gender: '',
         city:'',
@@ -92,7 +92,7 @@ export default function Register() {
     return (
         <GuestLayout >
             <Head title="Register"  />
-            <div className='gap-4'>
+            <div className='gap-5'>
                 <form onSubmit={submit} >
                     <div>
                         <InputLabel htmlFor="name" value="Full name" />
@@ -112,7 +112,7 @@ export default function Register() {
                         <InputError message={errors.name} className="mt-2" />
                     </div>
 
-                    <div className="flex flex-col gap-1 px-1 pt-1'">
+                    <div className="flex flex-col gap-1 px-1 mt-4'">
                         <InputLabel htmlFor="email" value="Email" />
 
                         <TextInput
@@ -130,8 +130,7 @@ export default function Register() {
                         <InputError message={errors.email} className="mt-2" />
                     </div>
                     
-                    <div className='grid mt-4 sm:grid-cols-2 ' >
-                        <div className="flex flex-col gap-1 px-1 pt-1'">
+                    <div className="flex flex-col gap-1 px-1 pt-2'">
                             <InputLabel htmlFor="phone" value="Phone Number" />
 
                             <TextInput
@@ -149,34 +148,10 @@ export default function Register() {
                             <InputError message={errors.phone} className="mt-2" />
                         </div>
 
-                        <div className="flex flex-col gap-1 px-1 pt-1'">
-                            <InputLabel htmlFor="birthdate" value="Birth Date" />
+                    <div className='grid mt-4 sm:grid-cols-2 ' >
+                        
 
-                            {/* <Popover>
-                            <PopoverTrigger asChild>
-                                <Button
-                                variant={"outline"}
-                                className={cn(
-                                    "w-[280px] justify-start text-left font-normal",
-                                    !data.birthdate && "text-muted-foreground"
-                                )}
-                                >
-                                <LuCalendar className="w-4 h-4 mr-2" />
-                                {data.birthdate ? format(data.birthdate, "PPP") : <span>Pick a date</span>}
-                                </Button>
-                            </PopoverTrigger>
-                            <PopoverContent className="w-auto p-0">
-                                <Calendar
-                                mode="single"
-                                selected={date}
-                                onSelect=
-                                initialFocus
-                                />
-                            </PopoverContent>
-                            </Popover> */}
-
-                            <InputError message={errors.birthdate} className="mt-2" />
-                        </div>
+                        
 
                         <div className="flex flex-col gap-1 px-1 pt-1'">
                             <InputLabel htmlFor="usertype" value="User Type" />
