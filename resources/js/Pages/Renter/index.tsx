@@ -16,6 +16,8 @@ import {
 
 export default function index({ auth, listing }: PageProps) {
 
+    console.log(listing)
+
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredListing, setFilteredListing] = useState(listing);
 

@@ -26,4 +26,9 @@ class Listing extends Model
         'curfew',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

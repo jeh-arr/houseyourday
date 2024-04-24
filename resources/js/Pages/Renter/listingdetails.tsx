@@ -196,7 +196,8 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                           id="availability"
                                           name="availability"
                                           type="text"
-                                          value={'123456789'}
+                                          // @ts-ignore
+                                          value={listing.user.phone}
                                           readOnly={true}
                                       />
                                     </div>

@@ -96,10 +96,10 @@ export default function Welcome({ auth,listing, laravelVersion, phpVersion }: Pa
                                     </div>
                                 </div>
                             </main>
-                            <section className="w-full  bg-slate-800 dark:bg-gray-800">
-                            <div className="grid justify-center w-5/6 h-full gap-3 mx-auto container-2xl">
-                                <div className="col-span-2 gap-4 p-8 text-center">
-                                    <h1 className="pb-5 font-sans text-6xl w-max font-bold text-green-700">
+                            <section className="w-full   bg-slate-800 dark:bg-gray-800">
+                            <div className="grid justify-center  h-full gap-3 mx-auto container-2xl">
+                                <div className=" gap-4 p-8 text-center">
+                                    <h1 className="pb-5 font-sans bg-pin text-6xl w-max font-bold text-green-700">
                                         About Us </h1>
                                                     <Separator className='h-1  bg-green-700 '></Separator>
                                                     
@@ -107,13 +107,14 @@ export default function Welcome({ auth,listing, laravelVersion, phpVersion }: Pa
                                                     
                                                     
                                     </div>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 container-2xl p-6 m-1">
-                                            <Card className="bg-white bg-opacity-90">
-                                            <CardHeader className="flex justify-center items-center ">
-                                                <img src={about1} alt="" className="w-200px h-auto rounded-full" />
-                                            </CardHeader>
-                                                <div className="p-5">
-                                                    <CardTitle className="text-2xl font-semibold mb-4 flex justify-center items-center">Asnea Z. Balaiman</CardTitle>
+                                    <div className="container mx-auto p-6">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
+                                            <Card className="bg-white bg-opacity-90 flex flex-col items-center min-w-[250px]">
+                                                <CardHeader className="flex justify-center items-center">
+                                                    <img src={about1} alt="" className="w-2/3 h-auto rounded-full" />
+                                                </CardHeader>
+                                                <div className="p-5 flex flex-col items-center">
+                                                <CardTitle className="text-2xl font-semibold mb-4 flex justify-center items-center">Asnea Z. Balaiman</CardTitle>
                                                     <CardDescription className="text-md text-gray-700 ">
                                                         <p><strong>POSITION:</strong> Graphics and Design Artist</p>
                                                         <p><strong>CELLPHONE #:</strong> 09454913610</p>
@@ -127,11 +128,11 @@ export default function Welcome({ auth,listing, laravelVersion, phpVersion }: Pa
                                                 </div>
                                             </Card>
 
-                                            <Card className="bg-white bg-opacity-90">
+                                            <Card className="bg-white bg-opacity-90 flex flex-col items-center min-w-[250px]">
                                                 <CardHeader className="flex justify-center items-center">
                                                     <img src={about4} alt="" className="w-2/3 h-auto rounded-full" />
                                                 </CardHeader>
-                                                <div className="p-5">
+                                                <div className="p-5 flex flex-col items-center">
                                                     <CardTitle className="text-2xl font-semibold mb-4 flex justify-center items-center">Chelyn Maeve S. Jobiane</CardTitle>
                                                     <CardDescription className="text-md text-gray-700">
                                                         <p><strong>POSITION:</strong> Project Manager</p>
@@ -146,11 +147,11 @@ export default function Welcome({ auth,listing, laravelVersion, phpVersion }: Pa
                                                 </div>
                                             </Card>
 
-                                            <Card className="bg-white bg-opacity-90">
+                                            <Card className="bg-white bg-opacity-90 flex flex-col items-center min-w-[250px]">
                                                 <CardHeader className="flex justify-center items-center">
                                                     <img src={about10} alt="" className="w-2/3 h-auto rounded-full" />
                                                 </CardHeader>
-                                                <div className="p-5">
+                                                <div className="p-5 flex flex-col items-center">
                                                     <CardTitle className="text-2xl font-semibold mb-4 flex justify-center items-center">Dominic Anthony L. Jadulos</CardTitle>
                                                     <CardDescription className="text-md text-gray-700">
                                                         <p><strong>POSITION:</strong> HTML Developer</p>
@@ -166,11 +167,11 @@ export default function Welcome({ auth,listing, laravelVersion, phpVersion }: Pa
                                             </Card>
 
                                             
-                                            <Card className="bg-white bg-opacity-90">
+                                            <Card className="bg-white bg-opacity-90 flex flex-col items-center min-w-[250px]">
                                                 <CardHeader className="flex justify-center items-center">
                                                     <img src={about7} alt="" className="w-2/3 h-auto rounded-full" />
                                                 </CardHeader>
-                                                <div className="p-5">
+                                                <div className="p-5 flex flex-col items-center">
                                                     <CardTitle className="text-2xl font-semibold mb-4 flex justify-center items-center">Faiz C. Mayo</CardTitle>
                                                     <CardDescription className="text-md text-gray-700">
                                                         <p><strong>POSITION:</strong> Project Manager</p>
@@ -185,11 +186,11 @@ export default function Welcome({ auth,listing, laravelVersion, phpVersion }: Pa
                                                 </div>
                                             </Card>
                                             
-                                            <Card className="bg-white bg-opacity-90">
+                                            <Card className="bg-white bg-opacity-90 flex flex-col items-center min-w-[250px]">
                                                 <CardHeader className="flex justify-center items-center">
                                                     <img src={about2} alt="" className="w-2/3 h-auto rounded-full" />
                                                 </CardHeader>
-                                                <div className="p-5">
+                                                <div className="p-5 flex flex-col items-center">
                                                     <CardTitle className="text-2xl font-semibold mb-4 flex justify-center items-center">Jorcell Francis T. Mangunay</CardTitle>
                                                     <CardDescription className="text-md text-gray-700">
                                                         <p><strong>POSITION:</strong> HTML Developer</p>
@@ -205,11 +206,11 @@ export default function Welcome({ auth,listing, laravelVersion, phpVersion }: Pa
                                             </Card>
 
                                             {/* Marjorie T. Cantomayor */}
-                                            <Card className="bg-white bg-opacity-90">
+                                            <Card className="bg-white bg-opacity-90 flex flex-col items-center min-w-[250px]">
                                                 <CardHeader className="flex justify-center items-center">
                                                     <img src={about6} alt="" className="w-2/3 h-auto rounded-full" />
                                                 </CardHeader>
-                                                <div className="p-5">
+                                                <div className="p-5 flex flex-col items-center">
                                                     <CardTitle className="text-2xl font-semibold mb-4 flex justify-center items-center">Marjorie T. Cantomayor</CardTitle>
                                                     <CardDescription className="text-md text-gray-700">
                                                         <p><strong>POSITION:</strong> Graphics and Design Artist</p>
@@ -225,11 +226,11 @@ export default function Welcome({ auth,listing, laravelVersion, phpVersion }: Pa
                                             </Card>
                                             
                                         
-                                            <Card className="bg-white bg-opacity-90">
+                                            <Card className="bg-white bg-opacity-90 flex flex-col items-center min-w-[250px]">
                                                 <CardHeader className="flex justify-center items-center">
                                                     <img src={about8} alt="" className="w-2/3 h-auto rounded-full" />
                                                 </CardHeader>
-                                                <div className="p-5">
+                                                <div className="p-5 flex flex-col items-center">
                                                     <CardTitle className="text-2xl font-semibold mb-4 flex justify-center items-center">Shedy Wencel F. Fugata</CardTitle>
                                                     <CardDescription className="text-md text-gray-700">
                                                         <p><strong>POSITION:</strong> System/Information Architects</p>
@@ -245,11 +246,11 @@ export default function Welcome({ auth,listing, laravelVersion, phpVersion }: Pa
                                             </Card>
 
                                             {/* Shena Andrea C. Latada */}
-                                            <Card className="bg-white bg-opacity-90">
+                                            <Card className="bg-white bg-opacity-90 flex flex-col items-center min-w-[250px]">
                                                 <CardHeader className="flex justify-center items-center">
                                                     <img src={about3} alt="" className="w-2/3 h-auto rounded-full" />
                                                 </CardHeader>
-                                                <div className="p-5">
+                                                <div className="p-5 flex flex-col items-center">
                                                     <CardTitle className="text-2xl font-semibold mb-4 flex justify-center items-center">Shena Andrea C. Latada</CardTitle>
                                                     <CardDescription className="text-md text-gray-700">
                                                         <p><strong>POSITION:</strong> Graphics and Design Artist</p>
@@ -264,11 +265,11 @@ export default function Welcome({ auth,listing, laravelVersion, phpVersion }: Pa
                                                 </div>
                                             </Card>
 
-                                            <Card className="bg-white bg-opacity-90">
+                                            <Card className="bg-white bg-opacity-90 flex flex-col items-center min-w-[250px]">
                                                 <CardHeader className="flex justify-center items-center">
                                                     <img src={about9} alt="" className="w-2/3 h-auto rounded-full" />
                                                 </CardHeader>
-                                                <div className="p-5">
+                                                <div className="p-5 flex flex-col items-center">
                                                     <CardTitle className="text-2xl font-semibold mb-4 flex justify-center items-center">Sophia Ysabelle A. Sorongon</CardTitle>
                                                     <CardDescription className="text-md text-gray-700">
                                                         <p><strong>POSITION:</strong> System/Information Architects</p>
@@ -284,11 +285,11 @@ export default function Welcome({ auth,listing, laravelVersion, phpVersion }: Pa
                                             </Card>
 
                                             {/* Yron Derf D. Jabagat */}
-                                            <Card className="bg-white bg-opacity-90">
+                                            <Card className="bg-white bg-opacity-90 flex flex-col items-center min-w-[250px]">
                                                 <CardHeader className="flex justify-center items-center">
                                                     <img src={about5} alt="" className="w-2/3 h-auto rounded-full" />
                                                 </CardHeader>
-                                                <div className="p-5">
+                                                <div className="p-5 flex flex-col items-center">
                                                     <CardTitle className="text-2xl font-semibold mb-4 flex justify-center items-center">Yron Derf D. Jabagat</CardTitle>
                                                     <CardDescription className="text-md text-gray-700">
                                                         <p><strong>POSITION:</strong> HTML Developer</p>
@@ -304,6 +305,7 @@ export default function Welcome({ auth,listing, laravelVersion, phpVersion }: Pa
                                             </Card>
 
                                     </div>
+                                </div>
                                 </div>
                             </section>  
                         
