@@ -16,6 +16,16 @@ import {
     CardHeader,
     CardTitle,
   } from "@/shadcn/ui/card"
+
+  import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+  } from "@/shadcn/ui/select"
   
 
 export default function listingdetails({ auth, listing }: PageProps) {
@@ -26,7 +36,7 @@ export default function listingdetails({ auth, listing }: PageProps) {
       property_name: listing.property_name,
       property_address: listing.property_address,
       
-      postal:listing.postal,
+      
       price: listing.price,
       availability: listing.availability,
       bathroom: listing.bathroom,
@@ -192,14 +202,19 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                         htmlFor="availability"
                                         value="Availability"
                                     />
-                                    <TextInput
-                                        id="availability"
-                                        name="availability"
-                                        type="text"
-                                        value={data.availability}
-                                        onChange={(e) => setData('availability', e.target.value)}
-                                        
-                                    />
+                                    <Select value={data.availability} onValueChange={(value:string) => setData('availability', value)}  >
+                                        <SelectTrigger className="w-full">
+                                            <SelectValue placeholder="Select Availability" />
+                                        </SelectTrigger >
+                                        <SelectContent className="w-full">
+                                            <SelectGroup>
+                                                <SelectLabel>Availability</SelectLabel>
+                                                <SelectItem value="Available">Available</SelectItem>
+                                                <SelectItem value="Not Available">Not Available</SelectItem>
+                                                <SelectItem value="Soon">Soon</SelectItem>
+                                            </SelectGroup>
+                                        </SelectContent>
+                                    </Select>
                                 </div>
                                 <div className="flex flex-col pt-2 px-3 gap-2">
                                     <InputLabel

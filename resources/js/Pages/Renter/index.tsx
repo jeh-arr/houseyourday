@@ -2,7 +2,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Link, Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
 import { Button } from '@/shadcn/ui/button'
-
+import { useState} from "react"
 import { Badge } from "@/shadcn/ui/badge"
 import {
     Card,
@@ -16,6 +16,9 @@ import {
 
 export default function index({ auth, listing }: PageProps) {
 
+    const [searchTerm, setSearchTerm] = useState('');
+    const [filteredListing, setFilteredListing] = useState(listing);
+
     const getBadgeColor = (availability: any) => {
         switch (availability) {
             case 'Available':
@@ -27,6 +30,18 @@ export default function index({ auth, listing }: PageProps) {
             default:
                 return '';
         }
+    };
+    
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const term = event.target.value;
+        setSearchTerm(term);
+                        //@ts-ignore
+        const filtered = listing.filter((list) => 
+            list.property_name.toLowerCase().includes(term.toLowerCase()) ||
+            list.property_address.toLowerCase().includes(term.toLowerCase())
+        );
+        
+        setFilteredListing(filtered);
     };
 
 
@@ -42,12 +57,29 @@ export default function index({ auth, listing }: PageProps) {
             <div className="container pt-8">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
+
+                   
+
                         <div className="p-3 m-2 text-3xl font-extrabold text-left text-white rounded-lg shadow-sm bg-slate-500"> 
                         BOARDING HOUSE LISTINGS: </div>
+
+                        <div className="container pt-3">
+                        <div className="mb-4">
+                            <input
+                                type="text"
+                                
+                                placeholder="Search listings..."
+                                value={searchTerm}
+                                onChange={handleSearchChange}
+                                className="w-1/3 px-3 py-2 border border-gray-600 rounded-md"
+                            />
+                        </div>
+                        
+                        </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 m-5">
-                            {listing &&
-                                Array.isArray(listing) &&
-                                listing.map((list) => (
+                                    {filteredListing &&
+                                    Array.isArray(filteredListing) &&
+                                    filteredListing.map((list) => (
                                     <Card
                                         key={list.id}
                                         className="bg-white shadow-sm rounded-lg"
@@ -87,6 +119,8 @@ export default function index({ auth, listing }: PageProps) {
 
                                         </CardFooter>
                                     </Card>
+
+                                    
                                 ))}
                         </div>
                     </div>

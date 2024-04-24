@@ -9,9 +9,9 @@ export interface Listing {
     id: number;
     property_name: string;
     property_address: string;
-    city: string;
+    
     user_id: string;
-    postal: string;
+    
     price: string;
     availability: string;
     bathroom: string;

@@ -196,7 +196,7 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                           id="availability"
                                           name="availability"
                                           type="text"
-                                          value='123456789'
+                                          value={'123456789'}
                                           readOnly={true}
                                       />
                                     </div>
