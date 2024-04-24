@@ -26,11 +26,16 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/landlord', 'App\Http\Controllers\NewLandLordController@index')->name('landlord.index');
-    Route::get('/landlord/create', [NewLandlordController::class, 'create'])->name('landlord.create');
     
-    Route::post('/listing', [ListingController::class,'store'])->name('landlord.store');
+    
+    Route::get('/landlord/create', 'App\Http\Controllers\NewLandLordController@create')->name('landlord.create');
+    //Route::get('/landlord/create', [NewLandlordController::class, 'create'])->name('landlord.create');
 
-    Route::get('/landlord/{id}', [NewLandlordController::class,'show'])->name('landlord.show');
+    //Route::post('/listing', [ListingController::class,'store'])->name('landlord.store');
+    Route::post('/listing', 'App\Http\Controllers\ListingController@store')->name('landlord.store');
+
+    Route::get('/landlord/{id}', 'App\Http\Controllers\NewLandLordController@show')->name('landlord.show');
+    //Route::get('/landlord/{id}', [NewLandlordController::class,'show'])->name('landlord.show');
     
     Route::get('/renter', [RenterController::class, 'index'])->name('renter.index');
     Route::get('/renter/{id}', [RenterController::class, 'show'])->name('renter.show');
