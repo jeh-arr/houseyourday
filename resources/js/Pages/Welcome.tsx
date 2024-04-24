@@ -1,6 +1,7 @@
 import { Link, Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
-
+import hero from "@/../assets/images/Hero.png";
+import { Separator } from '@/shadcn/ui/separator';
 export default function Welcome({ auth, laravelVersion, phpVersion }: PageProps<{ laravelVersion: string, phpVersion: string }>) {
     const handleImageError = () => {
         document.getElementById('screenshot-container')?.classList.add('!hidden');
@@ -12,13 +13,12 @@ export default function Welcome({ auth, laravelVersion, phpVersion }: PageProps<
     return (
         <>
             <Head title="Welcome" />
-            <div className="text-black bg-gray-50 dark:bg-gray-50 dark:text-gray-900/50">
+            
                 
-                <div className="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#c0bdbd] selection:text-gray-900">
-                    <div className="relative w-full max-w-2xl px-6 lg:max-w-7xl">
-                        <header className="grid items-center grid-cols-2 gap-2 py-10 lg:grid-cols-3">
+                
+                    <header className='sticky top-0 z-10 flex-row w-full py-4 border-b-2 shadow-lg bg-white/60 padding-x backdrop-blur-lg border-neutral-300/30 '>
                             
-                            <nav className="flex justify-end flex-1 -mx-3 text-black">
+                            <nav className="flex justify-end right-0 top-0 flex-1 mx-3 text-black">
                                 {auth.user ? (
                                     <Link
                                         href={route('dashboard')}
@@ -44,16 +44,21 @@ export default function Welcome({ auth, laravelVersion, phpVersion }: PageProps<
                                 )}
                             </nav>
                         </header>
-
-                        <main className="mt-6">
-                            <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
+                        <main className=" bg-white h-screen w-full overflow-hidden mx-auto">
+                            <div className=" items-center h-screen grid gap-3 lg:grid-cols-2 lg:gap-8">
+                                <img src={hero}alt="" />
+                                <div className="flex flex-col p-10">
+                                    <h1 className='text-6xl font-bold text-primary'>Boarding House Finder</h1>
+                                    <Separator className='h-1 bg-primary my-3 '></Separator>
+                                    <p className='mr-2 pr-10'>Unlock the perfect haven with 'House Your Day' – your ultimate boarding house finder! Seamlessly navigate through an array of cozy abodes tailored to your needs. Discover comfort, convenience, and community with just a click. Let 'House Your Day' be your guiding light to a home-away-from-home experience like no other!</p>
                                 </div>
+                            </div>
                         </main>
-
                         
-                    </div>
-                </div>
-            </div>
+                
+        
+                    
+            
         </>
     );
 }
