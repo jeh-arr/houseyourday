@@ -1,6 +1,7 @@
 import { Link, Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
 import hero from "@/../assets/images/Hero.png";
+import background from "@/../assets/images/backgrounds.jpg";
 import { Separator } from '@/shadcn/ui/separator';
 export default function Welcome({ auth, laravelVersion, phpVersion }: PageProps<{ laravelVersion: string, phpVersion: string }>) {
     const handleImageError = () => {
@@ -44,16 +45,35 @@ export default function Welcome({ auth, laravelVersion, phpVersion }: PageProps<
                                 )}
                             </nav>
                         </header>
-                        <main className=" bg-white h-screen w-full overflow-hidden mx-auto">
-                            <div className=" items-center h-screen grid gap-3 lg:grid-cols-2 lg:gap-8">
-                                <img src={hero}alt="" />
-                                <div className="flex flex-col p-10">
-                                    <h1 className='text-6xl font-bold text-primary'>Boarding House Finder</h1>
-                                    <Separator className='h-1 bg-primary my-3 '></Separator>
-                                    <p className='mr-2 pr-10'>Unlock the perfect haven with 'House Your Day' – your ultimate boarding house finder! Seamlessly navigate through an array of cozy abodes tailored to your needs. Discover comfort, convenience, and community with just a click. Let 'House Your Day' be your guiding light to a home-away-from-home experience like no other!</p>
-                                </div>
-                            </div>
-                        </main>
+                        <main className="bg-white h-screen w-full overflow-hidden mx-auto">
+    <div 
+        className="items-center h-screen grid gap-3 lg:grid-cols-2 lg:gap-8"
+        style={{
+            backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url(${background})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            padding: '2rem', // Adjust padding as needed
+        }}
+    >   <div className="flex flex-col p-8">
+        <img 
+            src={hero}
+            alt="Logo"
+            className="object-contain h-64 lg:h-3/4 "
+        />
+        </div>
+        <div className="flex flex-col p-8 bg-gray-700 bg-opacity-90 rounded-lg shadow-lg">
+            <h1 className='text-6xl font-bold text-white mb-4'>Boarding House Finder</h1>
+            <Separator className='h-1 bg-green-600 my-2'></Separator>
+            <p className='text-lg text-white leading-relaxed'>
+                Unlock the perfect haven with 'House Your Day' – your ultimate boarding house finder! 
+                Seamlessly navigate through an array of cozy abodes tailored to your needs. 
+                Discover comfort, convenience, and community with just a click. 
+                Let 'House Your Day' be your guiding light to a home-away-from-home experience like no other!
+            </p>
+        </div>
+    </div>
+</main>
                         
                 
         
