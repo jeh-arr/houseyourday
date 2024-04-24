@@ -33,7 +33,8 @@ Route::middleware('auth')->group(function () {
 
     //Route::post('/listing', [ListingController::class,'store'])->name('landlord.store');
     Route::post('/listing', 'App\Http\Controllers\ListingController@store')->name('landlord.store');
-
+    Route::post('/listing/{listing}', 'App\Http\Controllers\ListingController@update')->name('landlord.update');
+    Route::delete('/listing/{listing}', 'App\Http\Controllers\ListingController@destroy')->name('landlord.destroy');
     Route::get('/landlord/{id}', 'App\Http\Controllers\NewLandLordController@show')->name('landlord.show');
     //Route::get('/landlord/{id}', [NewLandlordController::class,'show'])->name('landlord.show');
     

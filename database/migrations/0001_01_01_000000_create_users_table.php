@@ -22,9 +22,9 @@ return new class extends Migration
             $table->string('birthdate');
             $table->string('usertype');
             $table->string('gender');
-            $table->string('city');
+            
             $table->string('address');
-            $table->string('postal');
+            
             
             
             $table->timestamp('email_verified_at')->nullable();

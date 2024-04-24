@@ -39,9 +39,9 @@ class RegisteredUserController extends Controller
             //'birthdate' => 'required',
             'usertype' => 'required',
             'gender' => 'required',
-            'city' => 'required',
+            
             'address' => 'required',
-            'postal' => 'required',
+            
             
         ]);
 
@@ -53,9 +53,9 @@ class RegisteredUserController extends Controller
             'birthdate' => '12/12/12',
             'usertype' => $request->usertype,
             'gender' => $request->gender,
-            'city' => $request->city,
+            
             'address' => $request->address,
-            'postal' => $request->postal,
+            
             
         ]);
 

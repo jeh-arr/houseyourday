@@ -1,12 +1,13 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import { Head, useForm } from '@inertiajs/react';
 import { PageProps } from '@/types';
 import { Button } from '@/shadcn/ui/button'
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
-
+import { Transition } from '@headlessui/react';
+import { useEffect, FormEventHandler } from 'react';
 import {
     Card,
     CardContent,
@@ -19,7 +20,37 @@ import {
 
 export default function listingdetails({ auth, listing }: PageProps) {
 
-  console.log(listing)
+    const { data, setData, post, processing, errors,delete:destroy, reset ,progress, recentlySuccessful} = useForm({
+          
+      user_id: auth.user.id,
+      property_name: listing.property_name,
+      property_address: listing.property_address,
+      
+      postal:listing.postal,
+      price: listing.price,
+      availability: listing.availability,
+      bathroom: listing.bathroom,
+      kitchen: listing.kitchen,
+      other: listing.other,
+      rules: listing.rules,
+      curfew: listing.curfew,
+      image: null,
+    });
+
+    console.log(data.property_name)
+
+    const submit: FormEventHandler = (e) => {
+      e.preventDefault();
+
+      post(route('landlord.update',listing.id));
+    };
+
+    const ondelete: FormEventHandler = (e) => {
+      e.preventDefault();
+      destroy(route('landlord.destroy',listing.id));
+      //post(route('landlord.update',listing.id));
+    };
+
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -46,7 +77,7 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                     />
                                 </div>
                             </div>
-
+                      <form onSubmit={submit} >                  
                           <div className='flex flex-col'>
                                 <div className="flex flex-col pt-2 px-3 gap-2">
                                     <InputLabel
@@ -57,8 +88,9 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                         id="property_name"
                                         name="property_name"
                                         type="text"
-                                        value={listing.property_name}
-                                        readOnly={true}
+                                        value={data.property_name}
+                                        onChange={(e) => setData('property_name', e.target.value)}
+                                        
                                     />
                                 </div>
 
@@ -71,24 +103,14 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                         id="property_address"
                                         name="property_address"
                                         type="text"
-                                        value={listing.property_address}
-                                        readOnly={true}
+                                        
+                                        value={data.property_address}
+                                        onChange={(e) => setData('property_address', e.target.value)}
+                                        
                                     />
                                 </div>
 
-                                <div className="flex flex-col pt-2 px-3 gap-2">
-                                    <InputLabel
-                                        htmlFor="property_city"
-                                        value="Property City"
-                                    />
-                                    <TextInput
-                                        id="property_city"
-                                        name="property_city"
-                                        type="text"
-                                        value={listing.city}
-                                        readOnly={true}
-                                    />
-                                </div>
+                                
                                 <div className='grid sm:grid-cols-2'>
                                   <div className="flex flex-col pt-2 px-3 gap-2">
                                       <InputLabel
@@ -99,8 +121,9 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                           id="kitchen"
                                           name="Kitchen"
                                           type="text"
-                                          value={listing.kitchen}
-                                          readOnly={true}
+                                          value={data.kitchen}
+                                          onChange={(e) => setData('kitchen', e.target.value)}
+                                          
                                       />
                                   </div>
 
@@ -113,8 +136,9 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                           id="bathroom"
                                           name="bathroom"
                                           type="text"
-                                          value={listing.bathroom}
-                                          readOnly={true}
+                                          value={data.bathroom}
+                                          onChange={(e) => setData('bathroom', e.target.value)}
+                                          
                                       />
                                   </div>
                                 </div>
@@ -127,8 +151,9 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                         id="other"
                                         name="other"
                                         type="text"
-                                        value={listing.other}
-                                        readOnly={true}
+                                        value={data.other}
+                                        onChange={(e) => setData('other', e.target.value)}
+                                        
                                     />
                                 </div>
                                 <div className='grid sm:grid-cols-2'>
@@ -141,8 +166,9 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                           id="curfew"
                                           name="curfew"
                                           type="text"
-                                          value={listing.curfew}
-                                          readOnly={true}
+                                          value={data.curfew}
+                                          onChange={(e) => setData('curfew', e.target.value)}
+                                          
                                       />
                                   </div>
 
@@ -155,8 +181,9 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                           id="rules"
                                           name="rules"
                                           type="text"
-                                          value={listing.rules}
-                                          readOnly={true}
+                                          value={data.rules}
+                                          onChange={(e) => setData('rules', e.target.value)}
+                                          
                                       />
                                   </div>
                                 </div>
@@ -169,29 +196,46 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                         id="availability"
                                         name="availability"
                                         type="text"
-                                        value={listing.availability}
-                                        readOnly={true}
+                                        value={data.availability}
+                                        onChange={(e) => setData('availability', e.target.value)}
+                                        
                                     />
                                 </div>
                                 <div className="flex flex-col pt-2 px-3 gap-2">
                                     <InputLabel
                                         htmlFor="price"
-                                        value="Price"
+                                        value="Monthly Rent"
                                     />
                                     <TextInput
                                         id="price"
                                         name="price"
                                         type="text"
-                                        value={listing.price}
-                                        readOnly={true}
+                                        value={data.price}
+                                        onChange={(e) => setData('price', e.target.value)}
+                                        
                                     />
                                 </div>
-                                <div className="flex flex-col pt-2 px-3 mt-2 gap-2">
-                                <Button className='mx-16 bg-primary hover:bg-gray-600'>
-                                  asd
+                                <div className='grid p-6 gap-3 m-3 sm:grid-cols-2'>
+                                <Button disabled={processing}>
+                                  Update
                                 </Button>
-                                </div>  
+                                
+                                <Button variant="destructive" onClick={ondelete} >
+                                  Delete
+                                </Button>
+                                <Transition
+                                show={recentlySuccessful}
+                                enter="transition ease-in-out"
+                                enterFrom="opacity-0"
+                                leave="transition ease-in-out"
+                                leaveTo="opacity-0"
+                                >
+                                    <p className="text-sm text-gray-600">Saved.</p>
+                                </Transition>
+                                </div>
+
                           </div>
+                          </form>      
                         </div>
                     </div>
                 </div>

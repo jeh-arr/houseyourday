@@ -1,5 +1,5 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head } from '@inertiajs/react';
+import { Head ,Link} from '@inertiajs/react';
 import { PageProps } from '@/types';
 import { Button } from '@/shadcn/ui/button'
 import InputError from '@/Components/InputError';
@@ -16,7 +16,12 @@ import {
     CardTitle,
   } from "@/shadcn/ui/card"
   
-
+  import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+  } from "@/shadcn/ui/popover"
+  
 export default function listingdetails({ auth, listing }: PageProps) {
 
   console.log(listing)
@@ -30,7 +35,7 @@ export default function listingdetails({ auth, listing }: PageProps) {
             <div className="container pt-8">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                        <div className="p-3 m-2 text-3xl font-extrabold text-center text-white rounded-lg shadow-sm bg-slate-500"> PROPERTY DETAILS:</div>
+                        <div className="p-3 m-2 text-3xl font-extrabold text-left text-white rounded-lg shadow-sm bg-slate-500"> BOARDING HOUSE DETAILS:</div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 m-5">
                             <div className="flex flex-col justify-center items-center bg-slate-100">
                                 <div>
@@ -41,7 +46,7 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                             width: "100%",
                                             height: "max-content",
                                             objectFit: "cover",
-                                            marginBottom: "20px",
+                                            
                                         }}
                                     />
                                 </div>
@@ -51,7 +56,7 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                 <div className="flex flex-col pt-2 px-3 gap-2">
                                     <InputLabel
                                         htmlFor="property_name"
-                                        value="Property Name"
+                                        value="Boarding House Name"
                                     />
                                     <TextInput
                                         id="property_name"
@@ -65,7 +70,7 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                 <div className="flex flex-col pt-2 px-3 gap-2">
                                     <InputLabel
                                         htmlFor="property_address"
-                                        value="Property Address"
+                                        value="Boarding House Address"
                                     />
                                     <TextInput
                                         id="property_address"
@@ -76,20 +81,8 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                     />
                                 </div>
 
-                                <div className="flex flex-col pt-2 px-3 gap-2">
-                                    <InputLabel
-                                        htmlFor="property_city"
-                                        value="Property City"
-                                    />
-                                    <TextInput
-                                        id="property_city"
-                                        name="property_city"
-                                        type="text"
-                                        value={listing.city}
-                                        readOnly={true}
-                                    />
-                                </div>
-                                <div className='grid sm:grid-cols-2'>
+                                
+                                <div className='grid sm:grid-cols-2 n'>
                                   <div className="flex flex-col pt-2 px-3 gap-2">
                                       <InputLabel
                                           htmlFor="kitchen"
@@ -176,7 +169,7 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                 <div className="flex flex-col pt-2 px-3 gap-2">
                                     <InputLabel
                                         htmlFor="price"
-                                        value="Price"
+                                        value="Monthly Rent"
                                     />
                                     <TextInput
                                         id="price"
@@ -186,9 +179,36 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                         readOnly={true}
                                     />
                                 </div>
-                                <div className="flex flex-col pt-2 px-3 mt-2 gap-2">
-                                <Button className='mx-16 bg-primary hover:bg-gray-600'>
-                                  asd
+                                <div className='grid p-6 gap-3 m-3 sm:grid-cols-2'>
+                                <Popover>
+                                  <PopoverTrigger asChild>
+                                    <Button variant="outline">Show Contact Details</Button>
+                                  </PopoverTrigger>
+                                  <PopoverContent>
+                                    <div className="flex flex-col pt-2 px-3 gap-2">
+                                      <p>Interested?...Contact us at:</p>
+                                      
+                                      <InputLabel
+                                          htmlFor=""
+                                          value="Contact Details"
+                                      />
+                                      <TextInput
+                                          id="availability"
+                                          name="availability"
+                                          type="text"
+                                          value='123456789'
+                                          readOnly={true}
+                                      />
+                                    </div>
+
+                                  </PopoverContent>
+                                </Popover>  
+                                  
+                                <Button  >
+                                  <Link 
+                                  href={route('renter.index')}>
+                                    back
+                                  </Link>
                                 </Button>
                                 </div>  
                           </div>

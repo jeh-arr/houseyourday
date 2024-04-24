@@ -3,7 +3,7 @@ import { Link, Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
 import { Button } from '@/shadcn/ui/button'
 
-
+import { Badge } from "@/shadcn/ui/badge"
 import {
     Card,
     CardContent,
@@ -15,14 +15,27 @@ import {
 
 
 export default function index({ auth, listing }: PageProps) {
-    console.log(listing);
+    
+
+    const getBadgeColor = (availability: any) => {
+        switch (availability) {
+            case 'Available':
+                return 'bg-green-200';
+            case 'Not Available':
+                return 'bg-red-200';
+            case 'Soon':
+                return 'bg-gray-200';
+            default:
+                return '';
+        }
+    };
 
     return (
         <AuthenticatedLayout
             user={auth.user}
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800">
-                    Landlord Dashboard
+                    Owner Dashboard
                 </h2>
             }
         >
@@ -40,8 +53,8 @@ export default function index({ auth, listing }: PageProps) {
             <div className="container pt-8">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                        <div className="p-3 m-2 text-3xl font-extrabold text-center text-white rounded-lg shadow-sm bg-slate-500">
-                            LISTINGS:
+                        <div className="p-3 m-2 text-3xl font-extrabold text-start text-white rounded-lg shadow-sm bg-slate-500">
+                           BOARDING HOUSE LISTINGS:
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 m-5">
                             {listing &&
@@ -65,15 +78,18 @@ export default function index({ auth, listing }: PageProps) {
                                                 />
                                             </image>
                                             <div>
-                                                <CardTitle>
-                                                    {list.property_name}
+                                                <CardTitle className="text-lg font-semibold leading-tight text-gray-800">
+                                                    {list.property_name }
                                                 </CardTitle>
-                                                <CardDescription>
+                                                <CardDescription className="text-md text-gray-500">
                                                     {list.property_address}
                                                 </CardDescription>
                                             </div>
                                         </CardHeader>
-                                        <CardFooter className="flex justify-end">
+                                        <CardFooter className="flex justify-end gap-2 col-span-2">
+                                            <Badge variant="outline" className={getBadgeColor(list.availability)}>
+                                                {list.availability}
+                                            </Badge>
                                             <Button>
                                                 <Link
                                                 href={route('landlord.show',[list.id] )} >

@@ -21,8 +21,7 @@ class ListingController extends Controller
         $request->validate([
             'property_name' => 'required',
             'property_address'=> 'required',
-            'city'=> 'required',
-            'postal'=> 'required',
+            
             'price'=> 'required',
             'availability'=> 'required',
         
@@ -35,8 +34,7 @@ class ListingController extends Controller
         $property = Listing::create([
             'property_name' => $request->property_name,
             'property_address'=> $request->property_address,
-            'city'=> $request->city,
-            'postal'=> $request->postal,
+            
             'price'=> $request->price,
             'availability'=> $request->availability,
             'user_id' => $request->user_id,
@@ -53,5 +51,33 @@ class ListingController extends Controller
         ]);
         return Redirect::route('landlord.index');
         
+    }
+
+    public function update(Request $request, Listing $listing)
+    {
+
+        $listing->update([
+            'property_name' => $request->property_name,
+            'property_address'=> $request->property_address,
+            
+            'price'=> $request->price,
+            'availability'=> $request->availability,
+            'bathroom' => $request->bathroom,
+            'kitchen'=> $request->kitchen,
+            'other'=> $request->other,
+            
+            'rules'=> $request->rules,
+            'curfew'=> $request->curfew,
+        ]);
+        //return Redirect::route('landlord.index');
+    }
+
+    public function destroy(Listing $listing): RedirectResponse
+    {
+        // Delete the listing
+        $listing->delete();
+
+        // Redirect back to the landlord index page
+        return Redirect::route('landlord.index');
     }
 }

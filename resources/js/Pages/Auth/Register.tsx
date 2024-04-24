@@ -32,7 +32,7 @@ import { city_mun,province, getCityMunByProvince, getProvincesByRegion} from 'ph
 
 export default function Register() {
     const [date, setDate] = useState<Date>()
-    const [cities, setCities] = useState<string[]>([]);
+    
     
 
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -41,13 +41,11 @@ export default function Register() {
         password: '',
         password_confirmation: '',
         phone: '',
-        
         usertype: '',
         gender: '',
-        city:'',
         address:'',
-        postal:'',
-        username:'',
+        
+        
     });
 
     useEffect(() => {
@@ -56,32 +54,10 @@ export default function Register() {
         };
     }, []);
 
-    useEffect(() => {
-        
-        const region1 = getProvincesByRegion("09");
-        const region2 = getProvincesByRegion("10");
-        const region3 = getProvincesByRegion("11");
-        const region4 = getProvincesByRegion("12");
-        const region5 = getProvincesByRegion("15");
-        const region6 = getProvincesByRegion("16");
+   
 
-        const mindanao = region1.concat(region2, region3, region4, region5, region6);
+    
         
-        const cityPromises = region3.map((province : any)  => getCityMunByProvince(province.prov_code));
-
-    // Execute all promises and get the results
-        Promise.all(cityPromises).then(cities => {
-            // 'cities' is an array of arrays, flatten it
-            const flattenedCities = cities.flat();
-
-            // Do something with 'flattenedCities'
-            console.log(flattenedCities);
-            setCities(flattenedCities);
-        }).catch(error => {
-            console.error("Error fetching cities:", error);
-        });
-        
-        }, []); 
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
@@ -94,7 +70,7 @@ export default function Register() {
             <Head title="Register"  />
             <div className='gap-5'>
                 <form onSubmit={submit} >
-                    <div>
+                    <div className="flex flex-col gap-1 px-1 pt-2 mt-1">
                         <InputLabel htmlFor="name" value="Full name" />
 
                         <TextInput
@@ -112,7 +88,7 @@ export default function Register() {
                         <InputError message={errors.name} className="mt-2" />
                     </div>
 
-                    <div className="flex flex-col gap-1 px-1 mt-4'">
+                    <div className="flex flex-col gap-1 px-1 pt-2 mt-1">
                         <InputLabel htmlFor="email" value="Email" />
 
                         <TextInput
@@ -130,7 +106,7 @@ export default function Register() {
                         <InputError message={errors.email} className="mt-2" />
                     </div>
                     
-                    <div className="flex flex-col gap-1 px-1 pt-2'">
+                    <div className="flex flex-col gap-1 px-1 pt-2 mt-1">
                             <InputLabel htmlFor="phone" value="Phone Number" />
 
                             <TextInput
@@ -146,14 +122,14 @@ export default function Register() {
                             />
 
                             <InputError message={errors.phone} className="mt-2" />
-                        </div>
+                    </div>
 
-                    <div className='grid mt-4 sm:grid-cols-2 ' >
+                    <div className='grid   pt-2 sm:grid-cols-2 ' >
                         
 
                         
 
-                        <div className="flex flex-col gap-1 px-1 pt-1'">
+                        <div className="flex flex-col gap-1 px-1 pt-2 mt-1">
                             <InputLabel htmlFor="usertype" value="User Type" />
                             <Select onValueChange={(value:string) => setData('usertype', value)}  >
                                 <SelectTrigger className="w-[180px]">
@@ -173,7 +149,7 @@ export default function Register() {
                             <InputError message={errors.phone} className="mt-2" />
                         </div>
 
-                        <div className="flex flex-col gap-1 px-1 pt-1'">
+                        <div className="flex flex-col gap-1 px-1 pt-2 mt-1">
                             <InputLabel htmlFor="gender" value="Gender" />
                             <Select onValueChange={(value:string) => setData('gender', value)}  >
                                 <SelectTrigger className="w-[180px]">
@@ -190,10 +166,10 @@ export default function Register() {
                             </Select>      
                             
 
-                            <InputError message={errors.phone} className="mt-2" />
+                            <InputError message={errors.gender} className="mt-2" />
                         </div>
                     </div>
-                    <div className="flex flex-col gap-1 px-1 pt-1'">
+                    <div className="flex flex-col gap-1 px-1 pt-2 mt-1">
                             <InputLabel htmlFor="address" value="Address" />
 
                             <TextInput
@@ -209,48 +185,10 @@ export default function Register() {
 
                             <InputError message={errors.address} className="mt-2" />
                         </div>
-                    <div className='grid mt-4 sm:grid-cols-2 ' >
-                        
-                        <div className="flex flex-col gap-1 px-1 pt-1">
-                            <InputLabel htmlFor="city" value="City" />
+                    
 
-                            <Select onValueChange={(value:string) => setData('city', value)}  >
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Select City" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel>City</SelectLabel>
-                                        {cities.map((city:any) => (
-                                            <SelectItem key={city.reg_code} value={city.name}>
-                                                {city.name}
-                                            </SelectItem>
-                                        ))}
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>   
-
-                            <InputError message={errors.city} className="mt-2" />
-                    </div>
-
-                        <div className="flex flex-col gap-1 px-1 pt-1'">
-                            <InputLabel htmlFor="postal" value="Postal Code" />
-
-                            <TextInput
-                                id="postal"
-                                type="number"
-                                name="postal"
-                                value={data.postal}
-                                className="block w-full mt-1"
-                                
-                                onChange={(e) => setData('postal', e.target.value)}
-                                required
-                            />
-
-                            <InputError message={errors.password} className="mt-2" />
-                        </div>
-                    </div>
-                    <div className="flex flex-col gap-1 px-1 pt-1'">
+                    
+                    <div className="flex flex-col gap-1 px-1 pt-1 mt-1">
                         <InputLabel htmlFor="password" value="Password" />
 
                         <TextInput
@@ -267,7 +205,7 @@ export default function Register() {
                         <InputError message={errors.password} className="mt-2" />
                     </div>
 
-                    <div className="flex flex-col gap-1 px-1 pt-1'">
+                    <div className="flex flex-col gap-1 px-1 pt-1 mt-1">
                         <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
 
                         <TextInput

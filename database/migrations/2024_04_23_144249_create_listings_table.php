@@ -19,8 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class);
             $table->string('property_name');
             $table->string('property_address');
-            $table->string('city');
-            $table->string('postal');
+            
             
             $table->string('price');
             $table->string('availability');
