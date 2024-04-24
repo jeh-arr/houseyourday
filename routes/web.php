@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\RenterController;
 use App\Http\Controllers\LandlordController;
+use App\Http\Controllers\NewLandlordController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,12 +25,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/landlord', [LandlordController::class, 'index'])->name('landlord.index');
-    Route::get('/landlord/create', [LandlordController::class, 'create'])->name('landlord.create');
+    Route::get('/landlord', [NewLandlordController::class, 'index'])->name('landlord.index');
+    Route::get('/landlord/create', [NewLandlordController::class, 'create'])->name('landlord.create');
     
     Route::post('/landlord', [ListingController::class,'store'])->name('landlord.store');
 
-    Route::get('/landlord/{id}', [LandlordController::class,'show'])->name('landlord.show');
+    Route::get('/landlord/{id}', [NewLandlordController::class,'show'])->name('landlord.show');
     
     Route::get('/renter', [RenterController::class, 'index'])->name('renter.index');
     Route::get('/renter/{id}', [RenterController::class, 'show'])->name('renter.show');
