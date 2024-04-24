@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/landlord/{id}', [LandlordController::class,'show'])->name('landlord.show');
     
     Route::get('/renter', [RenterController::class, 'index'])->name('renter.index');
-
+    Route::get('/renter/{id}', [RenterController::class, 'show'])->name('renter.show');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

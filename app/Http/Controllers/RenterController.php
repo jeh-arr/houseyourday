@@ -19,4 +19,13 @@ class RenterController extends Controller
             'listing' => $listings,
         ]);
     }
+
+    public function show(Request $request, $id)
+    {
+        $listing = Listing::find($id);
+        
+        return Inertia::render('Renter/listingdetails', [
+            'listing' => $listing,
+        ]);
+    }
 }

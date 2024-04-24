@@ -25,5 +25,13 @@ class LandLordController extends Controller
     {
         return Inertia::render('Landlord/addlisting', );
     }
-
+    
+    public function show(Request $request, $id)
+    {
+        $listing = Listing::find($id);
+        
+        return Inertia::render('Landlord/listingdetails', [
+            'listing' => $listing,
+        ]);
+    }
 }

@@ -46,7 +46,7 @@ export default function index({ auth, listing }: PageProps) {
                                                     alt="Image Description"
                                                     style={{
                                                         width: "100%",
-                                                        height: "200px",
+                                                        height: "300px",
                                                         objectFit: "cover",
                                                         marginBottom: "20px",
                                                     }}
@@ -64,7 +64,7 @@ export default function index({ auth, listing }: PageProps) {
                                         <CardFooter className="flex justify-end">
                                             <Button>
                                                 <Link
-                                                href=''>
+                                                href={route('renter.show',[list.id] )} >
                                                     Details
                                                 </Link>
                                             </Button>
