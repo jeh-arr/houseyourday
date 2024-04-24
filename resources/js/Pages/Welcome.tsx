@@ -107,10 +107,10 @@ export default function Welcome({ auth,listing, laravelVersion, phpVersion }: Pa
                                                     
                                                     
                                     </div>
-                                    <div className="grid grid-cols-3 gap-8 container-2xl p-6 m-1">
+                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 container-2xl p-6 m-1">
                                             <Card className="bg-white bg-opacity-90">
                                             <CardHeader className="flex justify-center items-center ">
-                                                <img src={about1} alt="" className="w-2/3 h-auto rounded-full" />
+                                                <img src={about1} alt="" className="w-200px h-auto rounded-full" />
                                             </CardHeader>
                                                 <div className="p-5">
                                                     <CardTitle className="text-2xl font-semibold mb-4 flex justify-center items-center">Asnea Z. Balaiman</CardTitle>
