@@ -34,4 +34,9 @@ class LandLordController extends Controller
             'listing' => $listing,
         ]);
     }
+
+    public function update(Request $request, $id)
+    {
+        
+    }
 }

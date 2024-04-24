@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\LandlordController;
+
+
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\RenterController;
+use App\Http\Controllers\LandlordController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
