@@ -25,7 +25,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/landlord', [NewLandlordController::class, 'index'])->name('landlord.index');
+    Route::get('/landlord', 'App\Http\Controllers\NewLandLordController@index')->name('landlord.index');
     Route::get('/landlord/create', [NewLandlordController::class, 'create'])->name('landlord.create');
     
     Route::post('/listing', [ListingController::class,'store'])->name('landlord.store');
