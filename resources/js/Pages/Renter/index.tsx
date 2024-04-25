@@ -40,7 +40,17 @@ export default function index({ auth, listing }: PageProps) {
                         //@ts-ignore
         const filtered = listing.filter((list) => 
             list.property_name.toLowerCase().includes(term.toLowerCase()) ||
-            list.property_address.toLowerCase().includes(term.toLowerCase())
+            list.property_address.toLowerCase().includes(term.toLowerCase()) ||
+            list.availability.toLowerCase().includes(term.toLowerCase()) ||
+            list.kitchen.toLowerCase().includes(term.toLowerCase()) ||
+            list.bathroom.toLowerCase().includes(term.toLowerCase()) ||
+            list.other.toLowerCase().includes(term.toLowerCase()) ||
+            list.price.toString().includes(term.toLowerCase) ||
+            list.curfew.toLowerCase().includes(term.toLowerCase()) ||
+            list.rules.toLowerCase().includes(term.toLowerCase()) 
+            
+
+
         );
         
         setFilteredListing(filtered);
