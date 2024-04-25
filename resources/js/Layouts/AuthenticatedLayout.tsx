@@ -6,6 +6,8 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/react';
 import { User } from '@/types';
 
+import  backgroundimage  from "@/../assets/images/Vector.jpg";
+
 export default function Authenticated({ user, header, children }: PropsWithChildren<{ user: User, header?: ReactNode }>) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
@@ -110,7 +112,14 @@ export default function Authenticated({ user, header, children }: PropsWithChild
                 </header>
             )}
 
-            <main>{children}</main>
+                <main style={{ 
+                height: '100vh',    
+                backgroundImage: ` url(${backgroundimage})`,
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center center'
+                
+            }}>{children}</main>
         </div>
     );
 }

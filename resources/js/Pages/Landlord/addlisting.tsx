@@ -118,9 +118,9 @@ export default function addlisting({ auth }: PageProps){
         >
             <Head title="AddListing"  />
             <div className="py-12 ">
-                <div className="mx-auto max-w-4xl sm:px-6 lg:px-8 ">
-                <Card className='px-3 pt-2 rounded-sm font-sans text-2xl text-white' >
-                    <CardHeader className='bg-[#366359] m-1 rounded-md' >
+                <div className="mx-auto max-w-4xl  sm:px-6 lg:px-8 ">
+                <Card className='px-3 pt-2 rounded-sm bg-slate-400/50 backdrop-blur-lg font-sans text-2xl text-white' >
+                    <CardHeader className='bg-slate-500 m-1 rounded-md' >
                         <CardTitle >BOARDING HOUSE REGISTRATION </CardTitle>                    
                     </CardHeader>
                     

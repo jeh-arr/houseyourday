@@ -70,8 +70,8 @@ export default function listingdetails({ auth, listing }: PageProps) {
             
             <div className="container pt-8">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
-                        <div className="p-3 m-2 text-3xl font-extrabold text-center text-white rounded-lg shadow-sm bg-slate-500"> PROPERTY DETAILS:</div>
+                    <div className="overflow-hidden bg-slate-400/50 backdrop-blur-lg shadow-sm sm:rounded-lg">
+                        <div className="p-3 m-2 text-3xl font-extrabold text-left text-white rounded-lg shadow-sm bg-slate-500"> BOARDING HOUSE DETAILS:</div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 m-5">
                             <div className="flex flex-col justify-center items-center bg-slate-100">
                                 <div>
@@ -82,7 +82,7 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                             width: "100%",
                                             height: "max-content",
                                             objectFit: "cover",
-                                            marginBottom: "20px",
+                                            
                                         }}
                                     />
                                 </div>

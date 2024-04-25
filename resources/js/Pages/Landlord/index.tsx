@@ -64,7 +64,7 @@ export default function index({ auth, listing }: PageProps) {
             </div>
             <div className="container pt-8">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg">
+                    <div className="overflow-hidden bg-slate-400/50 backdrop-blur-lg shadow-sm sm:rounded-lg">
                         <div className="p-3 m-2 text-3xl font-extrabold text-start text-white rounded-lg shadow-sm bg-slate-500">
                         BOARDING HOUSE LISTINGS:
                         </div>
