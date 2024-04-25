@@ -26,6 +26,12 @@ class Listing extends Model
         'curfew',
     ];
 
+    protected $casts = [
+
+         'image' => 'array',
+    ];
+    
+
     public function user()
     {
         return $this->belongsTo(User::class);

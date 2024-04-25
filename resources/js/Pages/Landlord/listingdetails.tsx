@@ -16,7 +16,13 @@ import {
     CardHeader,
     CardTitle,
   } from "@/shadcn/ui/card"
-
+  import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+  } from "@/shadcn/ui/carousel"
   import {
     Select,
     SelectContent,
@@ -73,20 +79,34 @@ export default function listingdetails({ auth, listing }: PageProps) {
                     <div className="overflow-hidden bg-slate-400/50 backdrop-blur-lg shadow-sm sm:rounded-lg">
                         <div className="p-3 m-2 text-3xl font-extrabold text-left text-white rounded-lg shadow-sm bg-slate-500"> BOARDING HOUSE DETAILS:</div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 m-5">
-                            <div className="flex flex-col justify-center items-center bg-slate-100">
-                                <div>
-                                    <img
-                                        src={`/storage/${listing.image}`}
-                                        alt="Image Description"
-                                        style={{
-                                            width: "100%",
-                                            height: "max-content",
-                                            objectFit: "cover",
-                                            
-                                        }}
-                                    />
-                                </div>
-                            </div>
+                        <div className="flex flex-col justify-center items-center bg-slate-100">
+                        
+                        <Carousel  >
+                          <CarouselContent  >
+                            {JSON.parse(listing.image).map((image: string, index: number) => (
+                              <CarouselItem  key={index}>
+                                <img
+                                  src={`/storage/${image}`}
+                                  alt={`Image ${index}`}
+                                  style={{
+                                    width: "100%",
+                                    height: "max-content",
+                                    objectFit: "cover",
+                                  }}
+                                />
+                              </CarouselItem>
+                            ))}
+                          </CarouselContent>
+                          
+                            <CarouselPrevious className="p-2 rounded-full ml-14 bg-gray-700 text-white">
+                             
+                            </CarouselPrevious>
+                            <CarouselNext className="p-2 rounded-full mr-14 bg-gray-700 text-white">
+                              
+                            </CarouselNext>
+                          
+                        </Carousel>
+                          </div>
                       <form onSubmit={submit} >                  
                           <div className='flex flex-col'>
                                 <div className="flex flex-col pt-2 px-3 gap-2">

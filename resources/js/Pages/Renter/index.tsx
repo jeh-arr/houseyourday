@@ -99,7 +99,7 @@ export default function index({ auth, listing }: PageProps) {
                                         <CardHeader>
                                             <image>
                                                 <img
-                                                    src={`/storage/${list.image}`}
+                                                     src={`/storage/${JSON.parse(list.image)[0]}`}
                                                     alt="Image Description"
                                                     style={{
                                                         width: "100%",

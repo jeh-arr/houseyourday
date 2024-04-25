@@ -15,6 +15,14 @@ import {
     CardHeader,
     CardTitle,
   } from "@/shadcn/ui/card"
+
+  import {
+    Carousel,
+    CarouselContent,
+    CarouselItem,
+    CarouselNext,
+    CarouselPrevious,
+  } from "@/shadcn/ui/carousel"
   
   import {
     Popover,
@@ -32,24 +40,38 @@ export default function listingdetails({ auth, listing }: PageProps) {
         >
             <Head title="Details" />
             
-            <div className="container h-full pt-8">
+            <div className="container pt-8">
                 <div className="mx-auto  max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-slate-400/50 backdrop-blur-lg shadow-sm sm:rounded-lg">
                         <div className="p-3 m-2 text-3xl font-extrabold text-left text-white rounded-lg shadow-sm bg-slate-500"> BOARDING HOUSE DETAILS:</div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 m-5">
                             <div className="flex flex-col justify-center items-center bg-slate-100">
-                                <div>
-                                    <img
-                                        src={`/storage/${listing.image}`}
-                                        alt="Image Description"
-                                        style={{
-                                            width: "100%",
-                                            height: "max-content",
-                                            objectFit: "cover",
-                                            
-                                        }}
-                                    />
-                                </div>
+                                
+                        <Carousel  >
+                          <CarouselContent  >
+                            {JSON.parse(listing.image).map((image: string, index: number) => (
+                              <CarouselItem  key={index}>
+                                <img
+                                  src={`/storage/${image}`}
+                                  alt={`Image ${index}`}
+                                  style={{
+                                    width: "100%",
+                                    height: "max-content",
+                                    objectFit: "cover",
+                                  }}
+                                />
+                              </CarouselItem>
+                            ))}
+                          </CarouselContent>
+                          
+                            <CarouselPrevious className="p-2 rounded-full ml-14 bg-gray-700 text-white">
+                            
+                            </CarouselPrevious>
+                            <CarouselNext className="p-2 rounded-full mr-14 bg-gray-700 text-white">
+                              
+                            </CarouselNext>
+                          
+                        </Carousel>
                             </div>
 
                           <div className='flex flex-col'>

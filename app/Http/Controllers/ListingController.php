@@ -15,43 +15,42 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 class ListingController extends Controller
 {
-    public function store(Request $request ) : RedirectResponse
-    {
+    public function store(Request $request): RedirectResponse
+{
+    $request->validate([
+        'property_name' => 'required',
+        'property_address' => 'required',
+        'price' => 'required',
+        'availability' => 'required',
+        'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048', // Validate each image
+    ]);
 
-        $request->validate([
-            'property_name' => 'required',
-            'property_address'=> 'required',
-            
-            'price'=> 'required',
-            'availability'=> 'required',
-        
-        
-        
-            
-        ]);
+    $images = [];
 
-        $image = $request->file('image')->store('images', 'public');
-        $property = Listing::create([
-            'property_name' => $request->property_name,
-            'property_address'=> $request->property_address,
+    if ($request->hasFile('image')) {
+        foreach ($request->file('image') as $file) {
+            $path = $file->store('images', 'public');
+            $images[] = $path;
             
-            'price'=> $request->price,
-            'availability'=> $request->availability,
-            'user_id' => $request->user_id,
-
-            'bathroom' => $request->bathroom,
-            'kitchen'=> $request->kitchen,
-            'other'=> $request->other,
-            'image'=> $image,
-            'rules'=> $request->rules,
-            'curfew'=> $request->curfew,
-
-            
-            
-        ]);
-        return Redirect::route('landlord.index');
-        
+        }
     }
+
+    $property = Listing::create([
+        'property_name' => $request->property_name,
+        'property_address' => $request->property_address,
+        'price' => $request->price,
+        'availability' => $request->availability,
+        'user_id' => $request->user_id,
+        'bathroom' => $request->bathroom,
+        'kitchen' => $request->kitchen,
+        'other' => $request->other,
+        'image' => json_encode($images), // Convert array to JSON string
+        'rules' => $request->rules,
+        'curfew' => $request->curfew,
+    ]);
+
+    return Redirect::route('landlord.index');
+}
 
     public function update(Request $request, Listing $listing)
     {

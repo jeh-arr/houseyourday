@@ -15,10 +15,10 @@ import {
 
 
 export default function index({ auth, listing }: PageProps) {
-    
+    console.log(listing)
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredListing, setFilteredListing] = useState(listing);
-
+    
     const getBadgeColor = (availability: any) => {
         switch (availability) {
             case 'Available':
@@ -81,7 +81,7 @@ export default function index({ auth, listing }: PageProps) {
                         </div>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 m-5">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 m-5 ">
                                 {filteredListing &&
                                     Array.isArray(filteredListing) &&
                                     filteredListing.map((list) => (
@@ -92,7 +92,7 @@ export default function index({ auth, listing }: PageProps) {
                                         <CardHeader>
                                             <image>
                                                 <img
-                                                    src={`/storage/${list.image}`}
+                                                   src={`/storage/${JSON.parse(list.image)[0]}`}
                                                     alt="Image Description"
                                                     style={{
                                                         width: "100%",

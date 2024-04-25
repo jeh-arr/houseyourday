@@ -37,6 +37,7 @@ import {
 import { PageProps } from '@/types';
 // @ts-ignore
 import { city_mun,province, getCityMunByProvince, getProvincesByRegion} from 'phil-reg-prov-mun-brgy';
+import { set } from 'date-fns/set';
 
 
 export default function addlisting({ auth }: PageProps){
@@ -49,7 +50,6 @@ export default function addlisting({ auth }: PageProps){
         user_id: auth.user.id,
         property_name: '',
         property_address: '',
-       
         price: '',
         availability: '',
         bathroom: '',
@@ -57,52 +57,37 @@ export default function addlisting({ auth }: PageProps){
         other: '',
         rules: '',
         curfew: '',
-        image: null,
+        image: [] as string[],
     });
+
+      
+      
+      const handleFileChange = (files: any) => {
+        if (files.length > 3) {
+          alert('Please select up to 3 images.');
+          return;
+        }
+      
+        const imagesArray: string[] = [];
+
+      
+        for (let i = 0; i < files.length; i++) {
+          const file = files[i];
+          imagesArray.push(file);
+          // Handle each file (e.g., upload, store, etc.)
+          console.log(`Uploaded image ${i + 1}:`, file);
+        }
+
+        setData('image', imagesArray);
+
+      };
 
     
 
-    const handleFileChange = (files : any) => {
-      if (files.length > 3) {
-          alert('Please select up to 3 images.');
-          return;
-      }
+    
   
-      for (let i = 0; i < files.length; i++) {
-          const file = files[i];
-          setData('image', file);
-          // Handle each file (e.g., upload, store, etc.)
-          console.log(`Uploaded image ${i + 1}:`, file);
-      }
-  }
 
-    // useEffect(() => {
-        
-    //     const region1 = getProvincesByRegion("09");
-    //     const region2 = getProvincesByRegion("10");
-    //     const region3 = getProvincesByRegion("11");
-    //     const region4 = getProvincesByRegion("12");
-    //     const region5 = getProvincesByRegion("15");
-    //     const region6 = getProvincesByRegion("16");
-
-    //     const mindanao = region1.concat(region2, region3, region4, region5, region6);
-        
-    //     const cityPromises = region3.map((province : any)  => getCityMunByProvince(province.prov_code));
-
-    // Execute all promises and get the results
-    //     Promise.all(cityPromises).then(cities => {
-    //         // 'cities' is an array of arrays, flatten it
-    //         const flattenedCities = cities.flat();
-
-    //         // Do something with 'flattenedCities'
-    //         console.log(flattenedCities);
-    //         setCities(flattenedCities);
-    //     }).catch(error => {
-    //         console.error("Error fetching cities:", error);
-    //     });
-        
-    // }, []); 
-
+    
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
 
