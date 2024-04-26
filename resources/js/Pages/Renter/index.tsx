@@ -1,4 +1,5 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import GuestLayout from '@/Layouts/GuestLayout';
 import { Link, Head } from '@inertiajs/react';
 import { PageProps } from '@/types';
 import { Button } from '@/shadcn/ui/button'
@@ -40,14 +41,9 @@ export default function index({ auth, listing }: PageProps) {
                         //@ts-ignore
         const filtered = listing.filter((list) => 
             list.property_name.toLowerCase().includes(term.toLowerCase()) ||
-            list.property_address.toLowerCase().includes(term.toLowerCase()) ||
-            list.availability.toLowerCase().includes(term.toLowerCase()) ||
-            list.kitchen.toLowerCase().includes(term.toLowerCase()) ||
-            list.bathroom.toLowerCase().includes(term.toLowerCase()) ||
-            list.other.toLowerCase().includes(term.toLowerCase()) ||
-            list.price.toString().includes(term.toLowerCase) ||
-            list.curfew.toLowerCase().includes(term.toLowerCase()) ||
-            list.rules.toLowerCase().includes(term.toLowerCase()) 
+            list.property_address.toLowerCase().includes(term.toLowerCase()) 
+            
+            
             
 
 
@@ -58,17 +54,49 @@ export default function index({ auth, listing }: PageProps) {
 
 
     return (
-        <AuthenticatedLayout
-            user={auth.user}
-            header={<h2 className="text-xl font-semibold leading-tight text-gray-800">Potential Tenant Dashboard</h2>}
-        >
+        <>      
+                <header className='bg-green-950 border-b border-gray-100 '>
+                                    
+                <nav className="p-3 flex justify-end right-0 top-0 flex-1 mx-3 text-white">
+                    
+                        <>
+                        <Link
+                            href={route('root')}
+                            className="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-gray-900 dark:hover:text-gray-900/80 dark:focus-visible:ring-white"
+                        >
+                            Home
+                        </Link>
+                            <Link
+                                href={route('login')}
+                                className="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-gray-900 dark:hover:text-gray-900/80 dark:focus-visible:ring-white"
+                            >
+                                Log in
+                            </Link>
+                            <Link
+                                href={route('register')}
+                                className="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-gray-900 dark:hover:text-gray-900/80 dark:focus-visible:ring-white"
+                            >
+                                Register
+                            </Link>
+                        </>
+                    
+                </nav>
+            </header>
+            <header className="bg-white shadow">
+                    <div className="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+                    <h2 className="text-xl font-semibold leading-tight text-gray-800">
+                    User Dashboard
+                </h2>
+                    </div>
+            </header>
+            
             <Head title="Renter" />
             <div className="container pt-8">
             
             </div>
             <div className="container pt-8">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-slate-400/50 backdrop-blur-lg shadow-sm sm:rounded-lg">
+                    <div className="overflow-hidden bg-slate-400/40 backdrop-blur-sm shadow-sm sm:rounded-lg">
 
                    
 
@@ -120,9 +148,10 @@ export default function index({ auth, listing }: PageProps) {
                                         </CardHeader>
                                         <CardFooter className="flex justify-end gap-2 col-span-2">
                                             <Badge variant="outline" className={getBadgeColor(list.availability)}>
-                                                {list.availability}
+                                                {list.rooms !== 0 ? list.rooms + " Rooms" : ""} {list.availability}
                                             </Badge>
-                                            <Button>
+                                            <Button >
+                                                
                                                 <Link
                                                 href={route('renter.show',[list.id] )} >
                                                     Details
@@ -138,6 +167,6 @@ export default function index({ auth, listing }: PageProps) {
                     </div>
                 </div>
             </div>
-        </AuthenticatedLayout>
+        </>
     );
 }

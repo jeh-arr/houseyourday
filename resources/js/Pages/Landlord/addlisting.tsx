@@ -36,8 +36,7 @@ import {
 } from "@/shadcn/ui/popover"
 import { PageProps } from '@/types';
 // @ts-ignore
-import { city_mun,province, getCityMunByProvince, getProvincesByRegion} from 'phil-reg-prov-mun-brgy';
-import { set } from 'date-fns/set';
+
 
 
 export default function addlisting({ auth }: PageProps){
@@ -52,11 +51,8 @@ export default function addlisting({ auth }: PageProps){
         property_address: '',
         price: '',
         availability: '',
-        bathroom: '',
-        kitchen: '',
-        other: '',
-        rules: '',
-        curfew: '',
+        description: '',
+        rooms: '',
         image: [] as string[],
     });
 
@@ -104,7 +100,7 @@ export default function addlisting({ auth }: PageProps){
             <Head title="AddListing"  />
             <div className="py-12 ">
                 <div className="mx-auto max-w-4xl  sm:px-6 lg:px-8 ">
-                <Card className='px-3 pt-2 rounded-sm bg-slate-400/50 backdrop-blur-lg font-sans text-2xl text-white' >
+                <Card className='px-3 pt-2 rounded-sm bg-slate-400/40 backdrop-blur-sm font-sans text-2xl text-white' >
                     <CardHeader className='bg-slate-500 m-1 rounded-md' >
                         <CardTitle >BOARDING HOUSE REGISTRATION </CardTitle>                    
                     </CardHeader>
@@ -120,7 +116,7 @@ export default function addlisting({ auth }: PageProps){
                                 type='text'
                                 onChange={(e) => setData('property_name', e.target.value)}
                                 />
-                              </div>
+                            </div>
                             <div className='flex flex-col pt-2 px-3 gap-2'>
                                 <InputLabel htmlFor="property_address" value="Boarding House Address" />
                                 <TextInput
@@ -135,54 +131,24 @@ export default function addlisting({ auth }: PageProps){
                         
                             
                           <div className='grid sm:grid-cols-2'>
-                            <div className='flex flex-col pt-2 px-3 gap-2'>
+                          <div className='flex flex-col pt-2 px-3 gap-2'>
                           
-                            <InputLabel htmlFor="bathroom" value="Bathroom" />
-                            <TextInput
-                                id="bathroom"
-                                name="bathroom"
-                                type='text'
-                                onChange={(e) => setData('bathroom', e.target.value)}
-                                />
-                            </div>  
-                            <div className='flex flex-col pt-2 px-3 gap-2'>
-                          
-                            <InputLabel htmlFor="kitchen" value="Kitchen" />
-                            <TextInput
-                                id="kitchen"
-                                name="kitchen"
-                                type='text'
-                                onChange={(e) => setData('kitchen', e.target.value)}
-                                />
-                            </div>  
-                            <div className='flex flex-col pt-2 px-3 gap-2'>
-                          
-                            <InputLabel htmlFor="rules" value="Rules" />
-                            <TextInput
-                                id="rules"
-                                name="rules"
-                                type='text'
-                                onChange={(e) => setData('rules', e.target.value)}
-                                />
-                            </div>
-                            <div className='flex flex-col pt-2 px-3 gap-2'>
-                          
-                            <InputLabel htmlFor="curfew" value="Curfew" />
-                            <TextInput
-                                id="curfew"
-                                name="curfew"
-                                type='text'
-                                onChange={(e) => setData('curfew', e.target.value)}
-                                />
-                            </div>
+                          <InputLabel htmlFor="rooms" value="Rooms" />
+                          <TextInput
+                              id="rooms"
+                              name="rooms"
+                              type='number'
+                              onChange={(e) => setData('rooms', e.target.value)}
+                              />
+                          </div>
                             <div className='flex flex-col pt-2 px-3 gap-2'>
                           
                             <InputLabel htmlFor="availability" value="Availability" />
                             <Select onValueChange={(value:string) => setData('availability', value)}  >
-                                <SelectTrigger className="w-full">
+                                <SelectTrigger className="bg-slate-50  w-full">
                                     <SelectValue placeholder="Select Availability" />
                                 </SelectTrigger >
-                                <SelectContent className="w-full">
+                                <SelectContent className="bg-slate-50 w-full">
                                     <SelectGroup>
                                         <SelectLabel>Availability</SelectLabel>
                                         <SelectItem value="Available">Available</SelectItem>
@@ -191,36 +157,41 @@ export default function addlisting({ auth }: PageProps){
                                     </SelectGroup>
                                 </SelectContent>
                             </Select>
+                            
                             </div>
+                            
+                          </div>
                             <div className='flex flex-col pt-2 px-3 gap-2'>
                           
                             <InputLabel htmlFor="price" value="Monthly Rent" />
                             <TextInput
                                 id="price"
                                 name="price"
-                                type='text'
+                                type='number'
                                 onChange={(e) => setData('price', e.target.value)}
                                 />
                             </div>
+
+                            <div className='flex flex-col pt-2 px-3 gap-2'>
+                                <InputLabel htmlFor="description" value="Description" />
+                                <textarea
+                                className='text-base p-3 font-sans bg-slate-50 rounded-sm'
+                                rows={3} // Specify the number of rows
+                                cols={50}
+                                id="description"
+                                name="description"
+                                
+                                onChange={(e) => setData('description', e.target.value)}
+                                />
                             </div>
                             
-                            <div className='flex flex-col pt-2 px-3 gap-2'>
-                          
-                            <InputLabel htmlFor="other" value="Other Amenities" />
-                            <TextInput
-                                id="other"
-                                name="other"
-                                type='text'
-                                onChange={(e) => setData('other', e.target.value)}
-                                />
-                            </div>  
                             <div className='flex flex-col pt-2 px-3 gap-2'>
                                 <InputLabel htmlFor="image" value="Upload Image" />
                                   
 
                             <input 
                                     type="file" 
-                                    className='border-2 border-gray-200 bg-white rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500'
+                                    className='border-2 border-gray-200 bg-slate-50 font-sans text-base rounded-md w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-primary'
                                     
                                     id="images" 
                                     name="images" 

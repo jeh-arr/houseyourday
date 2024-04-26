@@ -1,4 +1,6 @@
-import { Link, Head } from '@inertiajs/react';
+import { Link, Head, router ,usePage} from '@inertiajs/react';
+
+import { useState, useEffect } from 'react';
 import { PageProps } from '@/types';
 import hero from "@/../assets/images/Hero.png";
 import background from "@/../assets/images/backgrounds.jpg";
@@ -22,16 +24,17 @@ import {
     CardHeader,
     CardTitle,
   } from "@/shadcn/ui/card"
+import { Button } from '@/shadcn/ui/button';
 
 
 
 export default function Welcome({ auth,listing, laravelVersion, phpVersion }: PageProps<{ laravelVersion: string, phpVersion: string }>) {
-    const handleImageError = () => {
-        document.getElementById('screenshot-container')?.classList.add('!hidden');
-        document.getElementById('docs-card')?.classList.add('!row-span-1');
-        document.getElementById('docs-card-content')?.classList.add('!flex-row');
-        document.getElementById('background')?.classList.add('!hidden');
-    };
+    
+    const [data, setData] = useState(listing);
+    
+    
+
+    console.log(listing);
     
     return (
         <>
@@ -93,6 +96,12 @@ export default function Welcome({ auth,listing, laravelVersion, phpVersion }: Pa
                                             Discover comfort, convenience, and community with just a click. 
                                             Let 'House Your Day' be your guiding light to a home-away-from-home experience like no other!
                                         </p>
+                                        <Button className='bg-green-600 rounded-full font-bold text-2xl m-4 z-50'>
+                                            <Link href={route('renter.index')}>
+                                                START LOOKING
+                                            </Link>
+                                            
+                                        </Button>
                                     </div>
                                 </div>
                             </main>

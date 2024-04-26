@@ -14,13 +14,11 @@ export interface Listing {
     
     price: string;
     availability: string;
-    bathroom: string;
-    kitchen: string;
-    other: string;
+    description: string;
+    rooms: string;
+    
     image: string;
-    rules: string;
-    curfew: string;
-
+   
 
 
     

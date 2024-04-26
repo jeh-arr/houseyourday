@@ -19,16 +19,11 @@ return new class extends Migration
             $table->foreignIdFor(User::class);
             $table->string('property_name');
             $table->string('property_address');
-            
-            
             $table->string('price');
             $table->string('availability');
-            $table->string('bathroom')->nullable();
-            $table->string('kitchen')->nullable();
-            $table->string('other')->nullable();
-            $table->string('rules')->nullable();
-            $table->string('curfew')->nullable();
-            $table->string('image')->nullable();
+            $table->integer('rooms')->nullable();
+            $table->string('description')->nullable();
+            $table->json('image')->nullable();
 
         });
     }

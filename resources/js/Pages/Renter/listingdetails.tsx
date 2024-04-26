@@ -34,18 +34,18 @@ export default function listingdetails({ auth, listing }: PageProps) {
 
   console.log(listing)
     return (
-        <AuthenticatedLayout
-            user={auth.user}
-            
-        >
+        <>
+        <header className="bg-white shadow">
+        <div className="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">{}</div>
+        </header>
             <Head title="Details" />
             
             <div className="container pt-8">
                 <div className="mx-auto  max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-slate-400/50 backdrop-blur-lg shadow-sm sm:rounded-lg">
+                    <div className="overflow-hidden bg-slate-400/40 backdrop-blur-sm shadow-sm sm:rounded-lg">
                         <div className="p-3 m-2 text-3xl font-extrabold text-left text-white rounded-lg shadow-sm bg-slate-500"> BOARDING HOUSE DETAILS:</div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 m-5">
-                            <div className="flex flex-col justify-center items-center bg-slate-100">
+                            <div className="flex flex-col justify-center items-center max-h-2/3 bg-slate-100">
                                 
                         <Carousel  >
                           <CarouselContent  >
@@ -104,88 +104,45 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                 </div>
 
                                 
-                                <div className='grid sm:grid-cols-2 n'>
-                                  <div className="flex flex-col pt-2 px-3 gap-2">
-                                      <InputLabel
-                                          htmlFor="kitchen"
-                                          value="Kitchen"
-                                      />
-                                      <TextInput
-                                          id="kitchen"
-                                          name="Kitchen"
-                                          type="text"
-                                          value={listing.kitchen}
-                                          readOnly={true}
-                                      />
-                                  </div>
-
-                                  <div className="flex flex-col pt-2 px-3 gap-2">
-                                      <InputLabel
-                                          htmlFor="bathroom"
-                                          value="Bathroom"
-                                      />
-                                      <TextInput
-                                          id="bathroom"
-                                          name="bathroom"
-                                          type="text"
-                                          value={listing.bathroom}
-                                          readOnly={true}
-                                      />
-                                  </div>
-                                </div>
-                                <div className="flex flex-col pt-2 px-3 gap-2">
-                                    <InputLabel
-                                        htmlFor="other"
-                                        value="Other Amenities"
-                                    />
-                                    <TextInput
-                                        id="other"
-                                        name="other"
-                                        type="text"
-                                        value={listing.other}
-                                        readOnly={true}
-                                    />
-                                </div>
+                                
+                                
                                 <div className='grid sm:grid-cols-2'>
-                                  <div className="flex flex-col pt-2 px-3 gap-2">
-                                      <InputLabel
-                                          htmlFor="curfew"
-                                          value="Curfew"
-                                      />
-                                      <TextInput
-                                          id="curfew"
-                                          name="curfew"
-                                          type="text"
-                                          value={listing.curfew}
-                                          readOnly={true}
-                                      />
-                                  </div>
-
-                                  <div className="flex flex-col pt-2 px-3 gap-2">
-                                      <InputLabel
-                                          htmlFor="rules"
-                                          value="Rules"
-                                      />
-                                      <TextInput
-                                          id="rules"
-                                          name="rules"
-                                          type="text"
-                                          value={listing.rules}
-                                          readOnly={true}
-                                      />
-                                  </div>
-                                </div>
-                                <div className="flex flex-col pt-2 px-3 gap-2">
-                                    <InputLabel
-                                        htmlFor="availability"
-                                        value="Availability"
-                                    />
+                                  <div className='flex flex-col pt-2 px-3 gap-2'>
+                          
+                                    <InputLabel htmlFor="rooms" value="Rooms" />
                                     <TextInput
-                                        id="availability"
-                                        name="availability"
-                                        type="text"
-                                        value={listing.availability}
+                                        id="rooms"
+                                        name="rooms"
+                                        type='number'
+                                        value={listing.rooms}
                                         readOnly={true}
+                                        />
+                                  </div>
+                                  <div className='flex flex-col pt-2 px-3 gap-2'>
+                                
+                                  <InputLabel htmlFor="availability" value="Availability" />
+                                  <TextInput
+                                    id="availability"
+                                    name="availability"
+                                    type='availability'
+                                    value={listing.availability}
+                                    readOnly={true}
+                                    />
+                                  </div>
+                            
+                                </div>
+                            
+                          
+                              <div className='flex flex-col pt-2 px-3 gap-2'>
+                                    <InputLabel htmlFor="description" value="Description" />
+                                    <textarea
+                                    className='text-base p-3 font-sans bg-slate-50 rounded-sm'
+                                    rows={3} // Specify the number of rows
+                                    cols={50}
+                                    id="description"
+                                    name="description"
+                                    value= {listing.description}
+                                    readOnly={true}
                                     />
                                 </div>
                                 <div className="flex flex-col pt-2 px-3 gap-2">
@@ -211,12 +168,12 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                       <p>Interested?...Contact us at:</p>
                                       
                                       <InputLabel
-                                          htmlFor=""
+                                          htmlFor="phone"
                                           value="Contact Details"
                                       />
                                       <TextInput
-                                          id="availability"
-                                          name="availability"
+                                          id="phone"
+                                          name="phone"
                                           type="text"
                                           // @ts-ignore
                                           value={listing.user.phone}
@@ -239,6 +196,6 @@ export default function listingdetails({ auth, listing }: PageProps) {
                     </div>
                 </div>
             </div>
-        </AuthenticatedLayout>
+        </>
     );
 }

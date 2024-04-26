@@ -36,16 +36,7 @@ class AuthenticatedSessionController extends Controller
 
         $user = Auth::user();
 
-        switch ($user->usertype) {
-            case 'Landlord':
-                return redirect()->intended(route('landlord.index', absolute: false));
-            case 'Renter':
-                return redirect()->intended(route('renter.index', absolute: false));
-            default:
-                return redirect('/');
-        }
-
-        //return redirect()->intended(route('landlord.index', absolute: false));
+        return redirect()->intended(route('landlord.index', absolute: false));
     }
 
     /**

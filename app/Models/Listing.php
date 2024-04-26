@@ -15,15 +15,13 @@ class Listing extends Model
         'property_address',
         
         'user_id',
-        
-        'price',
         'availability',
-        'bathroom',
-        'kitchen',
+        'description',
+        'rooms',
+        'price',
         'other',
         'image',
-        'rules',
-        'curfew',
+        
     ];
 
     protected $casts = [

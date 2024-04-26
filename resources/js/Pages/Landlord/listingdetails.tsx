@@ -45,11 +45,8 @@ export default function listingdetails({ auth, listing }: PageProps) {
       
       price: listing.price,
       availability: listing.availability,
-      bathroom: listing.bathroom,
-      kitchen: listing.kitchen,
-      other: listing.other,
-      rules: listing.rules,
-      curfew: listing.curfew,
+      description: listing.description,
+      rooms: listing.rooms,
       image: null,
     });
 
@@ -76,7 +73,7 @@ export default function listingdetails({ auth, listing }: PageProps) {
             
             <div className="container pt-8">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-slate-400/50 backdrop-blur-lg shadow-sm sm:rounded-lg">
+                    <div className="overflow-hidden bg-slate-400/40 backdrop-blur-smshadow-sm sm:rounded-lg">
                         <div className="p-3 m-2 text-3xl font-extrabold text-left text-white rounded-lg shadow-sm bg-slate-500"> BOARDING HOUSE DETAILS:</div>
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 m-5">
                         <div className="flex flex-col justify-center items-center bg-slate-100">
@@ -112,7 +109,7 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                 <div className="flex flex-col pt-2 px-3 gap-2">
                                     <InputLabel
                                         htmlFor="property_name"
-                                        value="Property Name"
+                                        value="Boarding House Name"
                                     />
                                     <TextInput
                                         id="property_name"
@@ -127,7 +124,7 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                 <div className="flex flex-col pt-2 px-3 gap-2">
                                     <InputLabel
                                         htmlFor="property_address"
-                                        value="Property Address"
+                                        value="Boarding House Address"
                                     />
                                     <TextInput
                                         id="property_address"
@@ -142,100 +139,50 @@ export default function listingdetails({ auth, listing }: PageProps) {
 
                                 
                                 <div className='grid sm:grid-cols-2'>
-                                  <div className="flex flex-col pt-2 px-3 gap-2">
-                                      <InputLabel
-                                          htmlFor="kitchen"
-                                          value="Kitchen"
-                                      />
-                                      <TextInput
-                                          id="kitchen"
-                                          name="Kitchen"
-                                          type="text"
-                                          value={data.kitchen}
-                                          onChange={(e) => setData('kitchen', e.target.value)}
-                                          
-                                      />
-                                  </div>
-
-                                  <div className="flex flex-col pt-2 px-3 gap-2">
-                                      <InputLabel
-                                          htmlFor="bathroom"
-                                          value="Bathroom"
-                                      />
-                                      <TextInput
-                                          id="bathroom"
-                                          name="bathroom"
-                                          type="text"
-                                          value={data.bathroom}
-                                          onChange={(e) => setData('bathroom', e.target.value)}
-                                          
-                                      />
-                                  </div>
-                                </div>
-                                <div className="flex flex-col pt-2 px-3 gap-2">
-                                    <InputLabel
-                                        htmlFor="other"
-                                        value="Other Amenities"
-                                    />
-                                    <TextInput
-                                        id="other"
-                                        name="other"
-                                        type="text"
-                                        value={data.other}
-                                        onChange={(e) => setData('other', e.target.value)}
-                                        
-                                    />
-                                </div>
-                                <div className='grid sm:grid-cols-2'>
-                                  <div className="flex flex-col pt-2 px-3 gap-2">
-                                      <InputLabel
-                                          htmlFor="curfew"
-                                          value="Curfew"
-                                      />
-                                      <TextInput
-                                          id="curfew"
-                                          name="curfew"
-                                          type="text"
-                                          value={data.curfew}
-                                          onChange={(e) => setData('curfew', e.target.value)}
-                                          
-                                      />
-                                  </div>
-
-                                  <div className="flex flex-col pt-2 px-3 gap-2">
-                                      <InputLabel
-                                          htmlFor="rules"
-                                          value="Rules"
-                                      />
-                                      <TextInput
-                                          id="rules"
-                                          name="rules"
-                                          type="text"
-                                          value={data.rules}
-                                          onChange={(e) => setData('rules', e.target.value)}
-                                          
-                                      />
-                                  </div>
-                                </div>
-                                <div className="flex flex-col pt-2 px-3 gap-2">
-                                    <InputLabel
-                                        htmlFor="availability"
-                                        value="Availability"
-                                    />
-                                    <Select value={data.availability} onValueChange={(value:string) => setData('availability', value)}  >
-                                        <SelectTrigger className="w-full">
-                                            <SelectValue placeholder="Select Availability" />
-                                        </SelectTrigger >
-                                        <SelectContent className="w-full">
-                                            <SelectGroup>
-                                                <SelectLabel>Availability</SelectLabel>
-                                                <SelectItem value="Available">Available</SelectItem>
-                                                <SelectItem value="Not Available">Not Available</SelectItem>
-                                                <SelectItem value="Soon">Soon</SelectItem>
-                                            </SelectGroup>
-                                        </SelectContent>
-                                    </Select>
-                                </div>
+                          <div className='flex flex-col pt-2 px-3 gap-2'>
+                          
+                          <InputLabel htmlFor="rooms" value="Rooms" />
+                          <TextInput
+                              id="rooms"
+                              name="rooms"
+                              type='number'
+                              value={data.rooms}
+                              onChange={(e) => setData('rooms', e.target.value)}
+                              />
+                          </div>
+                            <div className='flex flex-col pt-2 px-3 gap-2'>
+                          
+                            <InputLabel htmlFor="availability" value="Availability" />
+                            <Select value={data.availability} onValueChange={(value:string) => setData('availability', value)}  >
+                                <SelectTrigger className="bg-slate-50  w-full">
+                                    <SelectValue placeholder="Select Availability" />
+                                </SelectTrigger >
+                                <SelectContent className="bg-slate-50 w-full">
+                                    <SelectGroup>
+                                        <SelectLabel>Availability</SelectLabel>
+                                        <SelectItem value="Available">Available</SelectItem>
+                                        <SelectItem value="Not Available">Not Available</SelectItem>
+                                        <SelectItem value="Soon">Soon</SelectItem>
+                                    </SelectGroup>
+                                </SelectContent>
+                            </Select>
+                            
+                            </div>
+                            
+                          </div>
+                          <div className='flex flex-col pt-2 px-3 gap-2'>
+                                <InputLabel htmlFor="description" value="Description" />
+                                <textarea
+                                className='text-base p-3 font-sans bg-slate-50 rounded-sm'
+                                rows={3} // Specify the number of rows
+                                cols={50}
+                                id="description"
+                                name="description"
+                                value= {data.description}
+                                onChange={(e) => setData('description', e.target.value)}
+                                />
+                            </div>
+                                
                                 <div className="flex flex-col pt-2 px-3 gap-2">
                                     <InputLabel
                                         htmlFor="price"

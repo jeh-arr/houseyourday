@@ -41,7 +41,8 @@ export default function Register() {
         password: '',
         password_confirmation: '',
         phone: '',
-        usertype: '',
+        
+        
         gender: '',
         address:'',
         
@@ -124,39 +125,21 @@ export default function Register() {
                             <InputError message={errors.phone} className="mt-2" />
                     </div>
 
-                    <div className='grid   pt-2 sm:grid-cols-2 ' >
+                    
                         
 
                         
 
-                        <div className="flex flex-col gap-1 px-1 pt-2 mt-1">
-                            <InputLabel htmlFor="usertype" value="User Type" />
-                            <Select onValueChange={(value:string) => setData('usertype', value)}  >
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="User Type" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel>User Type</SelectLabel>
-                                        <SelectItem value="Renter">Renter</SelectItem>
-                                        <SelectItem value="Landlord">Landlord</SelectItem>
-                                    
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>      
-                            
-
-                            <InputError message={errors.phone} className="mt-2" />
-                        </div>
+                        
 
                         <div className="flex flex-col gap-1 px-1 pt-2 mt-1">
                             <InputLabel htmlFor="gender" value="Gender" />
                             <Select onValueChange={(value:string) => setData('gender', value)}  >
-                                <SelectTrigger className="w-[180px]">
+                                <SelectTrigger className="w-full">
                                     <SelectValue placeholder="Select Gender" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
+                                </SelectTrigger >
+                                <SelectContent className="w-full"  >
+                                    <SelectGroup >
                                         <SelectLabel>Gender</SelectLabel>
                                         <SelectItem value="Male">Male</SelectItem>
                                         <SelectItem value="Female">Female</SelectItem>
@@ -168,7 +151,7 @@ export default function Register() {
 
                             <InputError message={errors.gender} className="mt-2" />
                         </div>
-                    </div>
+                    
                     <div className="flex flex-col gap-1 px-1 pt-2 mt-1">
                             <InputLabel htmlFor="address" value="Address" />
 

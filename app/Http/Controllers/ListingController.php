@@ -41,12 +41,12 @@ class ListingController extends Controller
         'price' => $request->price,
         'availability' => $request->availability,
         'user_id' => $request->user_id,
-        'bathroom' => $request->bathroom,
-        'kitchen' => $request->kitchen,
-        'other' => $request->other,
+        'price' => $request->price,
+        'description' => $request->description,
+        'rooms' => $request->rooms,
+        
         'image' => json_encode($images), // Convert array to JSON string
-        'rules' => $request->rules,
-        'curfew' => $request->curfew,
+        
     ]);
 
     return Redirect::route('landlord.index');
@@ -61,12 +61,11 @@ class ListingController extends Controller
             
             'price'=> $request->price,
             'availability'=> $request->availability,
-            'bathroom' => $request->bathroom,
-            'kitchen'=> $request->kitchen,
-            'other'=> $request->other,
             
-            'rules'=> $request->rules,
-            'curfew'=> $request->curfew,
+            
+            'description' => $request->description,
+            'rooms' => $request->rooms,
+            
         ]);
         //return Redirect::route('landlord.index');
     }

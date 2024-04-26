@@ -37,7 +37,7 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'phone' => 'required',
             //'birthdate' => 'required',
-            'usertype' => 'required',
+            
             'gender' => 'required',
             
             'address' => 'required',
@@ -51,7 +51,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'phone' => $request->phone,
             'birthdate' => '12/12/12',
-            'usertype' => $request->usertype,
+            
             'gender' => $request->gender,
             
             'address' => $request->address,
@@ -63,12 +63,9 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
         
-        if ($user->usertype == 'Landlord') {
+        
             return redirect(route('landlord.index', absolute: false));
-        }
-        if ($user->usertype =='Renter') {
-            return redirect(route('renter.index', absolute: false));
-        }
+        
 
         
     }
