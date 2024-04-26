@@ -12,9 +12,9 @@ import {
     CardFooter,
     CardHeader,
     CardTitle,
-  } from "@/shadcn/ui/card"
-  
+} from "@/shadcn/ui/card"
 
+import  backgroundimage  from "@/../assets/images/Vector.jpg";
 export default function index({ auth, listing }: PageProps) {
 
     console.log(listing)
@@ -91,9 +91,15 @@ export default function index({ auth, listing }: PageProps) {
             </header>
             
             <Head title="Renter" />
-            <div className="container pt-8">
             
-            </div>
+            <main style={{ 
+                height: '100vh',    
+                backgroundImage: ` url(${backgroundimage})`,
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center center'
+                
+            }}>
             <div className="container pt-8">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-slate-400/40 backdrop-blur-sm shadow-sm sm:rounded-lg">
@@ -167,6 +173,7 @@ export default function index({ auth, listing }: PageProps) {
                     </div>
                 </div>
             </div>
+            </main>
         </>
     );
 }

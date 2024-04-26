@@ -20,8 +20,8 @@ use Inertia\Inertia;
 //     ]);
 // });
 
-    Route::get('/', [WelcomeController::class,'start'])->name('root');
-
+    Route::get('/', 'App\Http\Controllers\WelcomeController@start')->name('root');
+    
 
 Route::get('/renter', [RenterController::class, 'index'])->name('renter.index');
 Route::get('/renter/{id}', [RenterController::class, 'show'])->name('renter.show');

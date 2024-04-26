@@ -6,7 +6,7 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
-
+import  backgroundimage  from "@/../assets/images/Vector.jpg";
 import {
     Card,
     CardContent,
@@ -35,11 +35,42 @@ export default function listingdetails({ auth, listing }: PageProps) {
   console.log(listing)
     return (
         <>
-        <header className="bg-white shadow">
-        <div className="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">{}</div>
-        </header>
+        <header className='bg-green-950 border-b border-gray-100 '>
+                                    
+                                    <nav className="p-3 flex justify-end right-0 top-0 flex-1 mx-3 text-white">
+                                        
+                                            <>
+                                            <Link
+                                                href={route('root')}
+                                                className="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-gray-900 dark:hover:text-gray-900/80 dark:focus-visible:ring-white"
+                                            >
+                                                Home
+                                            </Link>
+                                                <Link
+                                                    href={route('login')}
+                                                    className="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-gray-900 dark:hover:text-gray-900/80 dark:focus-visible:ring-white"
+                                                >
+                                                    Log in
+                                                </Link>
+                                                <Link
+                                                    href={route('register')}
+                                                    className="rounded-md px-3 py-2 text-white ring-1 ring-transparent transition hover:text-white/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-gray-900 dark:hover:text-gray-900/80 dark:focus-visible:ring-white"
+                                                >
+                                                    Register
+                                                </Link>
+                                            </>
+                                        
+                                    </nav>
+                                </header>
             <Head title="Details" />
-            
+            <main style={{ 
+                height: '100vh',    
+                backgroundImage: ` url(${backgroundimage})`,
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center center'
+                
+            }}>
             <div className="container pt-8">
                 <div className="mx-auto  max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-slate-400/40 backdrop-blur-sm shadow-sm sm:rounded-lg">
@@ -196,6 +227,7 @@ export default function listingdetails({ auth, listing }: PageProps) {
                     </div>
                 </div>
             </div>
+            </main>
         </>
     );
 }
