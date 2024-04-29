@@ -44,7 +44,8 @@ class ListingController extends Controller
         'price' => $request->price,
         'description' => $request->description,
         'rooms' => $request->rooms,
-        
+        'status' => 'Pending',
+        'permit' => $request->permit,
         'image' => json_encode($images), // Convert array to JSON string
         
     ]);
@@ -65,12 +66,32 @@ class ListingController extends Controller
             
             'description' => $request->description,
             'rooms' => $request->rooms,
+            'status' => $request->status,
+        ]);
+        //return Redirect::route('landlord.index');
+    }
+
+    public function adminupdate(Request $request, Listing $listing)
+    {
+
+        $listing->update([
+            
+            'status' => 'Approved',
             
         ]);
         //return Redirect::route('landlord.index');
     }
 
     public function destroy(Listing $listing): RedirectResponse
+    {
+        // Delete the listing
+        $listing->delete();
+
+        // Redirect back to the landlord index page
+        return Redirect::route('landlord.index');
+    }
+
+    public function admindestroy(Listing $listing): RedirectResponse
     {
         // Delete the listing
         $listing->delete();

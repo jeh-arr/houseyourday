@@ -3,7 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\NewLandlordController;
 use App\Http\Controllers\LandlordController;
-
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\RenterController;
 use App\Http\Controllers\WelcomeController;
@@ -32,6 +32,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {  
+
+    Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name('admin.index');
+    Route::get('/admin/{id}', 'App\Http\Controllers\AdminController@show')->name('admin.show');
+    Route::post('/listing/{listing}', 'App\Http\Controllers\ListingController@adminupdate')->name('admin.update');
+    //Route::delete('/listing/{listing}', 'App\Http\Controllers\ListingController@admindestroy')->name('admin.destroy');
+
     Route::get('/landlord', 'App\Http\Controllers\NewLandLordController@index')->name('landlord.index');
     
     

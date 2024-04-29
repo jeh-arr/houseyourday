@@ -31,18 +31,6 @@ export default function index({ auth, listing }: PageProps) {
                 return '';
         }
     };
-    const getStatusBadgeColor = (status: any) => {
-        switch (status) {
-            case 'Approved':
-                return 'bg-green-200 ml-2';
-            case 'Not Available':
-                return 'bg-red-200 ml-2';
-            case 'Pending':
-                return 'bg-gray-200 ml-2';
-            default:
-                return '';
-        }
-    };
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const term = event.target.value;
         setSearchTerm(term);
@@ -59,21 +47,12 @@ export default function index({ auth, listing }: PageProps) {
             user={auth.user}
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800">
-                    Owner Dashboard
+                    Admin Dashboard
                 </h2>
             }
         >
             <Head title="Dashboard" />
-            <div className="container pt-8">
-                <Button className="mx-16 bg-primary hover:bg-gray-600">
-                    <Link
-                        href={route("landlord.create")}
-                        //className="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-gray-900 dark:hover:text-gray-900/80 dark:focus-visible:ring-white"
-                    >
-                        Add Listing
-                    </Link>
-                </Button>
-            </div>
+            
             <div className="container pt-8">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-slate-400/40 backdrop-blur-sm shadow-sm sm:rounded-lg">
@@ -115,12 +94,8 @@ export default function index({ auth, listing }: PageProps) {
                                                 />
                                             </image>
                                             <div>
-                                                <CardTitle className="text-lg font-semibold leading-tight text-gray-800 gap-2">
+                                                <CardTitle className="text-lg font-semibold leading-tight text-gray-800">
                                                     {list.property_name }
-                                                    <Badge variant="outline" className= {getStatusBadgeColor(list.status)}>
-                                                        {list.status}  
-                                                    </Badge>
-                                                   
                                                 </CardTitle>
                                                 <CardDescription className="text-md text-gray-500">
                                                     {list.property_address}
@@ -129,12 +104,11 @@ export default function index({ auth, listing }: PageProps) {
                                         </CardHeader>
                                         <CardFooter className="flex justify-end gap-2 col-span-2">
                                             <Badge variant="outline" className={getBadgeColor(list.availability)}>
-                                               {list.rooms !== 0 ? list.rooms + " Rooms" : ""} {list.availability} 
+                                               {list.rooms !== 0 ? list.rooms + " Rooms" : ""} {list.availability}
                                             </Badge>
-                                            
                                             <Button>
                                                 <Link
-                                                href={route('landlord.show',[list.id] )} >
+                                                href={route('admin.show',[list.id] )} >
                                                     Details
                                                 </Link>
                                             </Button>

@@ -11,7 +11,7 @@ export interface Listing {
     property_address: string;
     
     user_id: string;
-    
+    permit : string;
     price: string;
     availability: string;
     description: string;

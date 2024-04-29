@@ -51,7 +51,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
             'phone' => $request->phone,
             'birthdate' => '12/12/12',
-            
+            'usertype' => 'Landlord',
             'gender' => $request->gender,
             
             'address' => $request->address,

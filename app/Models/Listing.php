@@ -21,6 +21,8 @@ class Listing extends Model
         'price',
         'other',
         'image',
+        'permit',
+        'status',
         
     ];
 

@@ -54,6 +54,7 @@ export default function addlisting({ auth }: PageProps){
         description: '',
         rooms: '',
         image: [] as string[],
+        permit: '',
     });
 
       
@@ -200,6 +201,16 @@ export default function addlisting({ auth }: PageProps){
                                     onChange={(e) => handleFileChange(e.target.files)}
                                 />
                             </div>
+                            <div className='flex flex-col pt-2 px-3 gap-2'>
+                          
+                            <InputLabel htmlFor="permit" value="Business Permit No." />
+                            <TextInput
+                              id="permit"
+                              name="permit"
+                              type='text'
+                              onChange={(e) => setData('permit', e.target.value)}
+                              />
+                          </div>
                         </CardContent>
                         <CardFooter className='  gap-3 m-3 grid sm:grid-cols-2' >
                             <Button  disabled={processing }  > 

@@ -23,6 +23,8 @@ return new class extends Migration
             $table->string('availability');
             $table->integer('rooms')->nullable();
             $table->string('description')->nullable();
+            $table->string('permit')->nullable();
+            $table->string('status')->nullable();
             $table->json('image')->nullable();
 
         });

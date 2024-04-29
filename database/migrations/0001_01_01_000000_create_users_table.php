@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('gender');
             
             $table->string('address');
-            
+            $table->string('usertype');
             
             
             $table->timestamp('email_verified_at')->nullable();
