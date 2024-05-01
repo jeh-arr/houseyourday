@@ -92,10 +92,9 @@ export default function Welcome({ auth,listing, laravelVersion, phpVersion }: Pa
             <h1 className='mb-4 text-4xl font-bold text-white lg:text-6xl lg:mb-2'>Boarding House Finder</h1>
             <Separator className='h-1 my-2 bg-green-600'></Separator>
             <p className='text-lg leading-relaxed text-white lg:text-base'>
-                Unlock the perfect haven with 'House Your Day' – your ultimate boarding house finder! 
-                Seamlessly navigate through an array of cozy abodes tailored to your needs. 
-                Discover comfort, convenience, and community with just a click. 
-                Let 'House Your Day' be your guiding light to a home-away-from-home experience like no other!
+                "House Your Day" offers the ultimate boarding house finder experience! Discover comfort, convenience, 
+                and community with just a click. Plus, rest assured knowing that all the boarding houses featured on our website are fully permitted. 
+                Your home-away-from-home awaits!
             </p>
             <Button className='m-4 text-2xl font-bold bg-green-600 rounded-full lg:text-lg'>
                 <Link href={route('renter.index')}>
