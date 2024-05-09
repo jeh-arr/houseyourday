@@ -18,7 +18,7 @@ export interface Listing {
     rooms: string;
     
     image: string;
-   
+    status: string;
 
 
     

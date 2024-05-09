@@ -14,7 +14,7 @@ import {
   } from "@/shadcn/ui/card"
 
 
-export default function index({ auth, listing }: PageProps) {
+export default function Approvedlist({ auth, listing }: PageProps) {
     console.log(listing)
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredListing, setFilteredListing] = useState(listing);
@@ -57,7 +57,7 @@ export default function index({ auth, listing }: PageProps) {
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-slate-400/40 backdrop-blur-sm shadow-sm sm:rounded-lg">
                         <div className="p-3 m-2 text-3xl font-extrabold text-start text-white rounded-lg shadow-sm bg-slate-500">
-                        PENDING BOARDING HOUSE LISTINGS:
+                        APPROVED BOARDING HOUSE LISTINGS:
                         </div>
                         <div className="container pt-3 grid grid-cols-1 sm:grid-cols-2  gap-4">
                         <div className="">
@@ -73,8 +73,8 @@ export default function index({ auth, listing }: PageProps) {
                         </div>
                         <div>
                         <Button className=''>
-                            <Link href={route('admin.approved')} preserveScroll>
-                            Show Approved
+                            <Link href={route('admin.index')} preserveScroll>
+                            Show Pending
                         </Link></Button>
                         </div>
                         </div>
@@ -90,7 +90,7 @@ export default function index({ auth, listing }: PageProps) {
                                         <CardHeader>
                                             <image>
                                                 <img
-                                                    src={`/storage/${JSON.parse(list.image)[0]}`}
+                                                   src={`/storage/${JSON.parse(list.image)[0]}`}
                                                     alt="Image Description"
                                                     style={{
                                                         width: "100%",

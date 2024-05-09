@@ -62,7 +62,13 @@ export default function listingdetails({ auth, listing }: PageProps) {
     destroy(route('landlord.destroy',listing.id));
     //post(route('landlord.update',listing.id));
   };
+  const goBack: FormEventHandler = (e) => {
+    e.preventDefault();
+    post(route('admin.approved'));
+    //post(route('landlord.update',listing.id));
+  };
   console.log(listing)
+  
     return (
       <AuthenticatedLayout
       user={auth.user}
@@ -217,13 +223,17 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                 
                                 <form onSubmit={submit}>
                                 <div className='grid p-6 gap-3 m-3 sm:grid-cols-2'>
-                                <Button disabled={processing}>
-                                  Approve 
-                                </Button>
+                                {listing.status === 'Pending' && (
+                                  <>
+                                    <Button disabled={processing}>
+                                      Approve
+                                    </Button>
+                                    <Button variant="destructive" onClick={ondelete}>
+                                      Delete
+                                    </Button>
+                                  </>
+                                )}
                                 
-                                <Button variant="destructive" onClick={ondelete} >
-                                  Delete
-                                </Button>
                                 <Transition
                                 show={recentlySuccessful}
                                 enter="transition ease-in-out"
@@ -235,6 +245,11 @@ export default function listingdetails({ auth, listing }: PageProps) {
                                 </Transition>
                                 </div>
                                 </form>
+                                {listing.status === 'Approved' && (
+                                  <Button >
+                                    <Link href={route('admin.approved')}>Back</Link>
+                                  </Button>
+                                )}
                           
                                 
                           </div>

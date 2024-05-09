@@ -20,6 +20,15 @@ class AdminController extends Controller
             'listing' => $listings,
         ]);
     }
+
+    public function approved()
+    {
+        
+        $listings = Listing::where('Status', 'Approved')->get();
+        return Inertia::render('Admin/Approvedlist', [
+            'listing' => $listings,
+        ]);
+    }
     
     
     public function show(Request $request, $id)

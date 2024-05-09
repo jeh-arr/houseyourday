@@ -34,6 +34,7 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {  
 
     Route::get('/admin', 'App\Http\Controllers\AdminController@index')->name('admin.index');
+    Route::get('/admin/approved', 'App\Http\Controllers\AdminController@approved')->name('admin.approved');
     Route::get('/admin/{id}', 'App\Http\Controllers\AdminController@show')->name('admin.show');
     Route::post('/listing/{listing}', 'App\Http\Controllers\ListingController@adminupdate')->name('admin.update');
     //Route::delete('/listing/{listing}', 'App\Http\Controllers\ListingController@admindestroy')->name('admin.destroy');
@@ -47,7 +48,7 @@ Route::middleware('auth')->group(function () {
     //Route::post('/listing', [ListingController::class,'store'])->name('landlord.store');
     Route::post('/listing', 'App\Http\Controllers\ListingController@store')->name('landlord.store');
     Route::post('/listing/{listing}', 'App\Http\Controllers\ListingController@update')->name('landlord.update');
-    Route::delete('/listing/{listing}', 'App\Http\Controllers\ListingController@destroy')->name('landlord.destroy');
+    Route::get('/listing/{listing}', 'App\Http\Controllers\ListingController@destroy')->name('landlord.destroy');
     Route::get('/landlord/{id}', 'App\Http\Controllers\NewLandLordController@show')->name('landlord.show');
     //Route::get('/landlord/{id}', [NewLandlordController::class,'show'])->name('landlord.show');
     
